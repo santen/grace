@@ -13,7 +13,7 @@
 	<link href="<?php echo Yii::app()->request->baseUrl; ?>/lib/jquery-ui-1.11.4.custom/jquery-ui.min.css" rel="stylesheet" type="text/css" />
 	<script src="<?php echo Yii::app()->request->baseUrl; ?>/lib/jquery-ui-1.11.4.custom/jquery-ui.min.js" language="JavaScript"></script>
 	
-	<link href="<?php echo Yii::app()->request->baseUrl; ?>/css/grace.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo Yii::app()->request->baseUrl; ?>/css/grace.css?5436" rel="stylesheet" type="text/css" />
 	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/grace.js" language="JavaScript"></script>
 
 	<title>Lady Grace Интернет-магазин</title>
@@ -23,30 +23,7 @@
 <body>
 	<div class="hidden-layout"></div>
 	<div class="main-wrap">
-		<div class="header">
-			<div class="row">
-				<div class="col-lg-2">
-					<div class="logo-wrap">Lady Grace</div>
-				</div>
-				<div class="col-lg-8"></div>
-				<div class="col-lg-2">
-					<div class="actions">
-						<div class="site-actions">
-							<button type="button" id="reg_btn" class="btn btn-warning btn-sm">
-								Зарегистрироваться
-							</button>
-							<button type="button" id="entry_btn" class="btn btn-default btn-sm">
-								Войти
-							</button>
-						</div>
-						<div class="cart-actions">
-							<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-							<a href="#">Корзина</a> 0
-						</div>
-					</div>
-				</div>				
-			</div>
-		</div>
+		<?php $this->widget('application.extensions.widgets.HeaderWidget');?>
 
 		<div class="slide-show">
 			<img src="https://api.fnkr.net/testimg/688x250/00CED1/FFF/?text=Slide-show">
@@ -439,26 +416,41 @@
 
 	<div class="pp-user">
 		<div class="pp-body">
+			<ul class="nav nav-tabs">
+				<li role="presentation" id="reg_tab" class="active"><a href="#">Регистрация</a></li>
+				<li role="presentation" id="entry_tab"><a href="#">Вход</a></li>
+			</ul>
 			<div class="pp-form">
-				<form action="user/add" method="POST" role="form">
-					<legend>Form title</legend>
+				<?php $this->beginWidget('CActiveForm', array('id'=>'reg_form',
+															  'action' => CHtml::normalizeUrl(array('user/add')))); ?>
+					<div class="form-group">
+						<label for="">E-Mail:</label>
+						<input type="text" class="form-control" id="" name="mail" placeholder="example@mail.ru">
+					</div>
+					<div class="form-group">
+						<label for="">Пароль:</label>
+						<input type="password" class="form-control" id="passwd1" name="passwd1">
+					</div>
+					<div class="form-group">
+						<label for="">Повторите пароль:</label>
+						<input type="password" class="form-control" id="passwd2" name="passwd1">
+					</div>				
 				
+					<button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+				<?php $this->endWidget(); ?>
+				<?php $this->beginWidget('CActiveForm', array('id'=>'entry_form',
+															  'action' => CHtml::normalizeUrl(array('user/entry')))); ?>				
 					<div class="form-group">
 						<label for="">E-Mail:</label>
 						<input type="text" class="form-control" id="" placeholder="Input field">
 					</div>
 					<div class="form-group">
 						<label for="">Пароль:</label>
-						<input type="password" class="form-control" id="passwd1" placeholder="Input field">
+						<input type="password" class="form-control" id="passwd">
 					</div>
-					<div class="form-group">
-						<label for="">Повторите пароль:</label>
-						<input type="password" class="form-control" id="passwd2" placeholder="Input field">
-					</div>
-					
 				
-					<button type="submit" class="btn btn-primary">Зарегистрироваться</button>
-				</form>
+					<button type="submit" class="btn btn-primary">Войти</button>
+				<?php $this->endWidget(); ?>
 			</div>
 		</div>
 	</div>

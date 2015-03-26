@@ -409,3 +409,40 @@ body{
 .pp-rating{
 
 }
+
+.pp-user{
+	width: 350px;
+	height: 360px;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #787878;
+	border-radius: 10px;
+	background: rgba(255, 255, 255, 0.9);
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	position: fixed;
+	display: block;
+	z-index: 10;
+}
+
+.pp-body{
+	margin-top: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.pp-form{
+	margin-top: 10px;
+}
+
+#reg_form{
+	display: block;
+}
+
+#entry_form{
+	display: none;
+}

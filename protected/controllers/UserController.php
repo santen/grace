@@ -2,8 +2,26 @@
 
 class UserController extends Controller
 {
-	public function actionIndex()
-	{
+	public function actionIndex(){
+		$this->layout = 'main';
+		$this->render('index', array('var' => 'user'));
+	}
+
+	public function actionAdd(){
+		$currentDate = date("Y-m-d");
+
+		$sql = "insert into user(mail, passwd, cdate) values(:mail, :passwd, :cdate)";
+		$query = Yii::app()->db->createCommand($sql);
+
+		$query->bindParam(":mail", $_POST["mail"], PDO::PARAM_STR);
+		$query->bindParam(":passwd", md5($_POST["passwd1"]), PDO::PARAM_STR);
+		$query->bindParam(":cdate", $currentDate, PDO::PARAM_STR);
+
+		//$query->execute();
+
+		//$userId = Yii::app()->db->getLastInsertID();
+
+		$this->layout = 'profile';
 		$this->render('index');
 	}
 
