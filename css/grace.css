@@ -446,3 +446,28 @@ body{
 #entry_form{
 	display: none;
 }
+
+.account-container{
+	width: 1400px;
+	margin-top: 20px;
+}
+
+.leftside_bar{
+	width: 200px;
+	float: left;
+}
+
+.account-body{
+	width: 1190px;
+	left: 210px;
+	position: absolute;
+}
+
+.account-title{
+	font-size: 16px;
+	color: #EB8C37;
+}
+
+.functions{
+	width: 100%;
+}

@@ -48,7 +48,7 @@
 							<button type="button" class="btn btn-default btn-sm">Скрыть категорию</button>
 						</div>
 						<div class="btn-group" role="group" aria-label="...">
-							<button type="button" class="btn btn-warning btn-sm">Добавить товар</button>
+							<button type="button" class="btn btn-warning btn-sm" id="newprod">Добавить товар</button>
 						</div>
 						<div class="btn-group" role="group" aria-label="...">
 							<button type="button" class="btn btn-info btn-sm">Для мужчин</button>

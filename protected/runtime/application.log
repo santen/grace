@@ -269,3 +269,73 @@ REQUEST_URI=/grace/index.php?r=admin/catalog/category&id=1
 in /home/st3rax/web/grace/protected/modules/admin/views/catalog/index.php (37)
 in /home/st3rax/web/grace/protected/modules/admin/controllers/CatalogController.php (31)
 in /home/st3rax/web/grace/index.php (13)
+2015/03/27 17:02:01 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /home/st3rax/web/yii/framework/web/CController.php:336
+Stack trace:
+#0 /home/st3rax/web/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#2 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('category')
+#4 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/catalog/c...')
+#5 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#6 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/grace/index.php?r=admin/catalog/category
+---
+2015/03/27 17:02:42 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: insert into category (name, parent_id, division, tablename, cdate) values (:name, :parent, :division, :tablename, now()).
+in /home/st3rax/web/grace/protected/modules/admin/controllers/CatalogController.php (42)
+in /home/st3rax/web/grace/index.php (13)
+2015/03/27 17:02:42 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: insert into category (name, parent_id, division, tablename, cdate) values (:name, :parent, :division, :tablename, now())' in /home/st3rax/web/yii/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /home/st3rax/web/grace/protected/modules/admin/controllers/CatalogController.php(42): CDbCommand->execute()
+#1 /home/st3rax/web/yii/framework/web/actions/CInlineAction.php(49): CatalogController->actionAddCat()
+#2 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#3 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#4 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('addcat')
+#6 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/catalog/a...')
+#7 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#8 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/grace/index.php?r=admin/catalog/addcat
+HTTP_REFERER=http://192.168.100.51/grace/index.php?r=admin/catalog/category
+---
+2015/03/27 17:04:04 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: insert into category (name, parent_id, division, tablename, cdate) values (:name, :parent, :division, :tablename, now()).
+in /home/st3rax/web/grace/protected/modules/admin/controllers/CatalogController.php (42)
+in /home/st3rax/web/grace/index.php (13)
+2015/03/27 17:04:04 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: insert into category (name, parent_id, division, tablename, cdate) values (:name, :parent, :division, :tablename, now())' in /home/st3rax/web/yii/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /home/st3rax/web/grace/protected/modules/admin/controllers/CatalogController.php(42): CDbCommand->execute()
+#1 /home/st3rax/web/yii/framework/web/actions/CInlineAction.php(49): CatalogController->actionAddCat()
+#2 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#3 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#4 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('addcat')
+#6 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/catalog/a...')
+#7 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#8 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/grace/index.php?r=admin/catalog/addcat
+HTTP_REFERER=http://192.168.100.51/grace/index.php?r=admin/catalog/category
+---
+2015/03/27 18:55:10 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ': id LIMIT 1' at line 1. The SQL statement executed was: SELECT * FROM `user` `t` WHERE id = : id LIMIT 1.
+in /home/st3rax/web/grace/protected/controllers/UserController.php (6)
+in /home/st3rax/web/grace/index.php (13)
+2015/03/27 18:55:10 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ': id LIMIT 1' at line 1. The SQL statement executed was: SELECT * FROM `user` `t` WHERE id = : id LIMIT 1' in /home/st3rax/web/yii/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /home/st3rax/web/yii/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /home/st3rax/web/yii/framework/db/ar/CActiveRecord.php(1356): CDbCommand->queryRow()
+#2 /home/st3rax/web/yii/framework/db/ar/CActiveRecord.php(1461): CActiveRecord->query(Object(CDbCriteria))
+#3 /home/st3rax/web/grace/protected/controllers/UserController.php(6): CActiveRecord->find('id = : id', Array)
+#4 [internal function]: UserController->actionIndex('5')
+#5 /home/st3rax/web/yii/framework/web/actions/CAction.php(109): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#6 /home/st3rax/web/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#7 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#9 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('index')
+#11 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/index')
+#12 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#13 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/grace/index.php?r=user/index&id=5
+---

@@ -2,9 +2,11 @@
 
 class UserController extends Controller
 {
-	public function actionIndex(){
-		$this->layout = 'main';
-		$this->render('index', array('var' => 'user'));
+	public function actionIndex($id){
+		$user = User::model()->find("id = :id", array(":id" => $id));
+
+		$this->layout = 'profile';
+		$this->render('account', array('user' => $user));
 	}
 
 	public function actionAdd(){

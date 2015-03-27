@@ -9,7 +9,7 @@ class CatalogController extends Controller
 		$this->render('index');
 	}
 
-	public function actionCategory($id){
+	public function actionCategory($id = 0){
 		$categories = Category::model()->findAll();
 
 		$query = Yii::app()->db->createCommand();
@@ -30,11 +30,35 @@ class CatalogController extends Controller
 	}
 
 	public function actionCategories(){
-		$this->render('index');
+		
 	}
 
 	public function actionAddCat(){
+		$sql = "insert into category (name, parent_id, division, tablename, cdate) values (:name, :parent, :division, :tablename, now())";
+		$query = Yii::app()->db->createCommand($sql);
+		$query->bindParam(":name", $_POST["category"]);
+		$query->bindParam(":parent", $_POST["parent"]);
+		$query->bindParam(":tablename", $_POST["tablename"]);
+		$query->bindParam(":division", $_POST["division"]);
+		$query->execute();
 
+		$categoryId = Yii::app()->db->getLastInsertID();
+		$this->redirect(array('catalog/category', "id" => $categoryId));
+	}
+
+	public function actionAddProd(){
+		$category = Category::model()->find("id = :id", array(":id" => $_POST["category"]));		
+
+		$sql = "insert into ".$category["tablename"]." (name, parent_id, division, tablename, cdate) values (:name, :parent, :division, :tablename, now())";
+		$query = Yii::app()->db->createCommand($sql);
+		$query->bindParam(":name", $_POST["category"]);
+		$query->bindParam(":parent", $_POST["parent"]);
+		$query->bindParam(":tablename", $_POST["tablename"]);
+		$query->bindParam(":division", $_POST["division"]);
+		$query->execute();
+
+		$categoryId = Yii::app()->db->getLastInsertID();
+		$this->redirect(array('catalog/category', "id" => $categoryId));
 	}
 	// Uncomment the following methods and override them if needed
 	/*
