@@ -17,9 +17,9 @@ class UserController extends Controller
 		$query->bindParam(":passwd", md5($_POST["passwd1"]), PDO::PARAM_STR);
 		$query->bindParam(":cdate", $currentDate, PDO::PARAM_STR);
 
-		//$query->execute();
+		$query->execute();
 
-		//$userId = Yii::app()->db->getLastInsertID();
+		$userId = Yii::app()->db->getLastInsertID();
 
 		$this->layout = 'profile';
 		$this->render('index');

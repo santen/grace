@@ -8,7 +8,7 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My Web Application',
-	'defaultController' => 'user',
+	'layout' => 'main',
 	// preloading 'log' component
 	'preload'=>array('log'),
 
@@ -19,7 +19,7 @@ return array(
 	),
 
 	'modules'=>array(
-		'admin',
+		'admin'=>array('layout' => 'admin.views.layouts.admin'),
 		// uncomment the following to enable the Gii tool
 		
 		'gii'=>array(

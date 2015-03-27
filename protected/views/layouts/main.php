@@ -14,59 +14,19 @@
 	<script src="<?php echo Yii::app()->request->baseUrl; ?>/lib/jquery-ui-1.11.4.custom/jquery-ui.min.js" language="JavaScript"></script>
 	
 	<link href="<?php echo Yii::app()->request->baseUrl; ?>/css/grace.css?5436" rel="stylesheet" type="text/css" />
-	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/grace.js" language="JavaScript"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/grace.js?0890" language="JavaScript"></script>
 
 	<title>Lady Grace Интернет-магазин</title>
 </head>
 
 <body>
-<body>
 	<div class="hidden-layout"></div>
 	<div class="main-wrap">
-		<?php $this->widget('application.extensions.widgets.HeaderWidget');?>
-
-		<div class="slide-show">
-			<img src="https://api.fnkr.net/testimg/688x250/00CED1/FFF/?text=Slide-show">
-			<img src="https://api.fnkr.net/testimg/688x250/00CED1/FFF/?text=Slide-show">
-		</div>
-
-		<div class="top-bar">
-			<div class="top-bar-cell">
-				<button type="button" class="btn btn-default btn-sm">
-					Для женщин
-				</button>
-			</div>
-			<div class="top-bar-cell">
-				<button type="button" class="btn btn-default btn-sm">
-					Для мужчин
-				</button>
-			</div>
-			<div class="top-bar-cell">
-				<button type="button" class="btn btn-default btn-sm">
-					Для детей
-				</button>
-			</div>
-		</div>
+		<?php $this->widget('application.extensions.widgets.HeaderWidget');?>		
 
 		<div class="body-wrap">
 			<div class="leftside-bar">
-				<div class="categories-bar">
-					<a href="#">
-						Сумки
-					</a><br />
-					<a href="#">
-						Платья
-					</a><br />
-					<a href="#">
-						Кофты
-					</a><br />
-					<a href="#">
-						Брюки
-					</a><br />
-					<a href="#">
-						Обувь
-					</a><br />
-				</div>
+				<?php $this->widget('application.extensions.widgets.CategoriesWidget'); ?>
 				<div class="search-bar">
 					<div class="search-block">
 						<div class="search-label">Цена:</div>
