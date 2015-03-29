@@ -1,7 +1,9 @@
 
 	<div class="leftside-bar">
-		<div class="avatar">
-			<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/avatars/no-thumb.png">
+		<div class="avatar-wrap">
+			<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/avatars/no-thumb.png" id="ava">
+			<div class="avatar-menu">Загрузить изображение</div>
+			<input type="file" id="favatar">
 		</div>
 		<div class="features">
 			<a href="#">Моя корзина</a><br />

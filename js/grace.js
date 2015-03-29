@@ -1,4 +1,7 @@
 $(document).ready(function() {
+	var uid = $.cookie("uid");
+	var sid = $.cookie("sid");
+
 	$("#price_slider").slider({
 		min: 500,
 		max: 80000,
@@ -78,5 +81,25 @@ $(document).ready(function() {
 
 		$("#reg_tab").removeClass();
 		$("#reg_form").hide();
+	});
+
+	$(".avatar-wrap").mouseover(function(){
+		$(".avatar-menu").show();
+	});
+
+	$(".avatar-wrap").mouseout(function(){
+		$(".avatar-menu").hide();
+	});
+
+	$(".avatar").click(function(){
+		$("#ava").attr("src", "/grace/images/avatars/4.jpg");
+	});
+
+	$(".avatar-menu").click(function(){
+		$("#favatar").click();
+	});
+
+	$("#favatar").change(function(){
+
 	});
 });

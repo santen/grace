@@ -471,3 +471,24 @@ body{
 .functions{
 	width: 100%;
 }
+
+.avatar-wrap{
+	z-index: 0;
+}
+
+.avatar-menu{
+	width: 200px;
+	height: 18px;
+	margin-top: -18px;
+	font-size: 12px;
+	color: #FFF;
+	text-align: center;
+	background: rgba(0, 0, 0, 0.6);
+	position: absolute;
+	display: none;
+	z-index: 2;
+}
+
+#favatar{
+	display: none;
+}

@@ -3,10 +3,20 @@
 class UserController extends Controller
 {
 	public function actionIndex($id){
-		$user = User::model()->find("id = :id", array(":id" => $id));
+		if(!isset($_COOKIE["uid"]) || !isset($_COOKIE["sid"])){
+			$this->layout = 'main';
+			$this->render("404");
+		}
 
+		if(!isGoodUser($_COOKIE["uid"], $_COOKIE["sid"])){
+			$this->layout = 'main';
+			$this->render("404");
+		}
+
+		$user = User::model()->find("id = :id", array(":id" => $id));		
+		
 		$this->layout = 'profile';
-		$this->render('account', array('user' => $user));
+		$this->render("index", array("user" => $user));
 	}
 
 	public function actionAdd(){
@@ -25,6 +35,57 @@ class UserController extends Controller
 
 		$this->layout = 'profile';
 		$this->render('index');
+	}
+
+	public function actionAuth(){
+		$mail = $_POST["mail"];
+		$passwd = md5($_POST["passwd"]);
+
+		$user = User::model->find("mail = :mail and passwd = :passwd", array(":mail" => $mail, ":passwd" => $passwd));
+		if(count($user) != 0){
+			setcookie("uid", $user["id"]);
+			setcookie("sid", md5($user["mail"]));
+		}
+
+		$this->layout = "profile";
+		$this->render("index", array("user" => $user));
+	}
+
+	public function actionSettings($id){
+		$user = User::model()->find("id = :id", array(":id" => $id));
+
+		$this->render("settings", array("user" => $user));
+	}
+
+	public function actionPreorder(){
+
+	}
+
+	public function actionComments(){
+
+	}
+
+	public function actionQuestions(){
+
+	}
+
+	public function actionCart(){
+
+	}
+
+	private function isGoodUser($uid, $sid){
+		if(!isset($_COOKIE["uid"]) || !isset($_COOKIE["sid"]))
+			return false;
+
+		$user = User::model()->find("id = :id", array(":id" => $uid))
+		if(md5($user["mail"]) != $_COOKIE["sid"]){
+			return false;
+		}
+	}
+
+	private function clearUser(){
+		setcookie("uid");
+		setcookie("sid");
 	}
 
 	// Uncomment the following methods and override them if needed
