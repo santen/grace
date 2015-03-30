@@ -74,6 +74,7 @@
 				<div class="form-group">
 					<label for="">Раздел:</label>
 					<select name="division" id="division" class="form-control" required="required">
+						<option value="0"></option>
 						<option value="1">Для мужчин</option>
 						<option value="2">Для женщин</option>
 						<option value="3">Для детей</option>

@@ -40,4 +40,18 @@ $(document).ready(function() {
 
 		//$("#prod_form")
 	}
+
+	$("#division").change(function(){
+		$.ajax({
+			type: "GET",
+			url: "index.php?r=admin/catalog/categoriesajax",
+			data: "div=" + $("#division").val(),
+			success: function(data){
+				alert(data);
+				var categories = JSON.parse(data);
+				for(var i = 0; i < categories.length; i++)
+					$("#category").append("<option value='" + categories[i].id + "'>" + categories[i].name + "</option>");
+			}
+		});
+	});
 });

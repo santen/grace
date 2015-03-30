@@ -1,5 +1,5 @@
 <?php
-
+define("DIVISIONS_COUNT", 3);
 
 class CatalogController extends Controller
 {
@@ -9,13 +9,13 @@ class CatalogController extends Controller
 		$this->render('index');
 	}
 
-	public function actionCategory($id = 0){
+	public function actionCategory($cat = 0){
 		$categories = Category::model()->findAll();
 
 		$query = Yii::app()->db->createCommand();
 		$query->select("tablename");
 		$query->from("category");
-		$query->where("id=:id", array(":id" => $id));
+		$query->where("id=:id", array(":id" => $cat));
 		$category = $query->queryRow();
 		$query->reset();
 
@@ -26,11 +26,21 @@ class CatalogController extends Controller
 		$query->reset();
 
 		$this->layout = 'admin';
-		$this->render('index', array("cat" => $id, "categories" => $categories, "products" => $products));
+		$this->render('index', array("cat" => $cat, "categories" => $categories, "products" => $products));
 	}
 
-	public function actionCategories(){
-		
+	public function actionCategoriesAjax($div){
+		$query = Yii::app()->db->createCommand();
+		$query->select("*");
+		$query->from("category");
+		$query->where("division = :division", array(":division" => $div));
+		$categories = $query->queryAll();
+		$query->reset();
+
+		//$categories = Category::model()->findAll();
+		//$categories = array("id" => 1, "name" => "обedm", "div" => $div);
+
+		$this->renderPartial("ajaxCategory", array("categories" => $categories));
 	}
 
 	public function actionAddCat(){
@@ -49,7 +59,7 @@ class CatalogController extends Controller
 	public function actionAddProd(){
 		$category = Category::model()->find("id = :id", array(":id" => $_POST["category"]));		
 
-		$sql = "insert into ".$category["tablename"]." (name, parent_id, division, tablename, cdate) values (:name, :parent, :division, :tablename, now())";
+		$sql = "insert into ".$category["tablename"]." (model, price, img, cdate) values (:name, :parent, :division, :tablename, now())";
 		$query = Yii::app()->db->createCommand($sql);
 		$query->bindParam(":name", $_POST["category"]);
 		$query->bindParam(":parent", $_POST["parent"]);
@@ -58,6 +68,7 @@ class CatalogController extends Controller
 		$query->execute();
 
 		$categoryId = Yii::app()->db->getLastInsertID();
+
 		$this->redirect(array('catalog/category', "id" => $categoryId));
 	}
 	// Uncomment the following methods and override them if needed

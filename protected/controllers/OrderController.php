@@ -4,7 +4,11 @@ class OrderController extends Controller
 {
 	public function actionIndex()
 	{
-		$this->render('index');
+		$user = User::model->find("id = :id", array(":id" => $id));
+		if($user["is_full"] == 1)
+			$this->render('index');
+		else
+			$this->redirect(array('user/settings'));
 	}
 
 	// Uncomment the following methods and override them if needed
