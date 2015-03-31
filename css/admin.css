@@ -61,7 +61,7 @@
 
 .pp-product{
 	width: 350px;
-	height: 410px;
+	height: 340px;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -81,6 +81,11 @@
 .pp-body{
 	margin-left: 10px;
 	margin-right: 10px;
+}
+
+.steps{
+	width: 100%;
+	text-align: center;
 }
 
 #step1_form{

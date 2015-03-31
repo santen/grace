@@ -57,19 +57,23 @@ class CatalogController extends Controller
 	}
 
 	public function actionAddProd(){
+		if((strlen($_POST["model"]) == 0) || ($_POST["category"] == 0) || (strlen($_POST["price"]) == 0))
+			$this->redirect(array('admin/catalog/category'));
+
 		$category = Category::model()->find("id = :id", array(":id" => $_POST["category"]));		
 
-		$sql = "insert into ".$category["tablename"]." (model, price, img, cdate) values (:name, :parent, :division, :tablename, now())";
+		$sql = "insert into ".$category["tablename"]." (model, category_id, price, cdate) values (:model, :category, :price, now())";
 		$query = Yii::app()->db->createCommand($sql);
-		$query->bindParam(":name", $_POST["category"]);
-		$query->bindParam(":parent", $_POST["parent"]);
-		$query->bindParam(":tablename", $_POST["tablename"]);
-		$query->bindParam(":division", $_POST["division"]);
+		$query->bindParam(":model", $_POST["model"]);
+		$query->bindParam(":category", $_POST["category"]);		
+		$query->bindParam(":price", $_POST["price"]);
 		$query->execute();
 
-		$categoryId = Yii::app()->db->getLastInsertID();
+		$this->redirect(array('catalog/category', "id" => $_POST["category"]));
+	}
 
-		$this->redirect(array('catalog/category', "id" => $categoryId));
+	private function getParent($id){
+		return Category::model()->find("parent_id = :id", array(":id" => $id));
 	}
 	// Uncomment the following methods and override them if needed
 	/*
