@@ -1,5 +1,11 @@
-<?php /* @var $this Controller */ ?>
+<div class="row">
+	<div class="col-lg-6">
+		<?php /* @var $this Controller */ 
 
+		$this->widget('application.extensions.widgets.BreadcrumbsWidget', array("id" => $cat));
+		?>
+	</div>
+</div>
 <div class="leftside-bar">
 	<ul class="nav nav-pills nav-stacked">
 		<?php			
@@ -8,8 +14,7 @@
 					echo "<li role='presentation' class='active' id='cat_".$category["id"]."'><a href='".CHtml::normalizeUrl(array('catalog/category', 'cat' => $category["id"]))."'>".$category["name"]."</a></li>";
 				else
 					echo "<li role='presentation' id='cat_".$category["id"]."'><a href='".CHtml::normalizeUrl(array('catalog/category', 'cat' => $category["id"]))."'>".$category["name"]."</a></li>";
-			}
-			$this->widget('application.extensions.widgets.BreadcrumbsWidget', array("id" => $cat));
+			}			
 		?>
 	</ul>
 </div>

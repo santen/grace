@@ -18,7 +18,7 @@ class BreadcrumbsWidget extends CWidget
 		$query->where("id = :id", array(":id" => $this->id));
 		$category = $query->queryRow();
 
-		array_push($categories, array($category["id"] => $category["name"]));
+		array_push($categories, array("id" => $category["id"], "name" => $category["name"]));
 
 		if($category["parent_id"] != 0)
 			array_push($categories, $this->getParent($category["parent_id"], $categories));
@@ -35,7 +35,7 @@ class BreadcrumbsWidget extends CWidget
 		$query->where("id = :id", array(":id" => $parentId));
 		$category = $query->queryRow();
 
-		array_push($categories, array($category["id"] => $category["name"]));
+		array_push($categories, array("id" => $category["id"], "name" => $category["name"]));
 
 		if($category["parent_id"] != 0){
 			return $this->getParent($category["parent_id"], $categories);

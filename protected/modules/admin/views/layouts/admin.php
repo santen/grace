@@ -33,14 +33,7 @@
 			</ul>
 		</div>
 		<div class="toolbar">
-			<div class="row">
-				<div class="col-lg-5 col-sm-4">
-					<ol class="breadcrumb">
-						<li><a href="#">Для мужчин</a></li>
-						<li><a href="#">Обувь</a></li>
-						<li class="active">Кросовки</li>
-					</ol>
-				</div>
+			<div class="row">				
 				<div class="col-lg-6 col-sm-8">
 					<div class="btn-toolbar" role="toolbar" aria-label="...">
 						<div class="btn-group" role="group" aria-label="...">
