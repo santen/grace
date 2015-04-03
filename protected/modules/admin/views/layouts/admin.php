@@ -19,13 +19,17 @@
 </head>
 
 <body>
+	<div class="error">Server error</div>
 	<div class="hidden-layout"></div>
 	<div class="admin-container">
 		<div class="top-bar">
 			<ul class="nav nav-tabs">
 				<?php
-					echo "<li role='presentation' class='active'><a href='".CHtml::normalizeUrl(array('catalog/index'))."'>Каталог</a></li>";
+					echo "<li role='presentation'><a href='".CHtml::normalizeUrl(array('catalog/index'))."'>Для мужчин</a></li>";
+					echo "<li role='presentation' class='active'><a href='".CHtml::normalizeUrl(array('catalog/index'))."'>Для женщин</a></li>";
+					echo "<li role='presentation'><a href='".CHtml::normalizeUrl(array('catalog/index'))."'>Для детей</a></li>";
 					echo "<li role='presentation'><a href='".CHtml::normalizeUrl(array('orders/index'))."'>Заказы</a></li>";
+					echo "<li role='presentation'><a href='".CHtml::normalizeUrl(array('orders/index'))."'>Лист ожидания</a></li>";
 					echo "<li role='presentation'><a href='".CHtml::normalizeUrl(array('user/index'))."'>Пользователи</a></li>";
 					echo "<li role='presentation'><a href='".CHtml::normalizeUrl(array('questions/index'))."'>Q&A</a></li>";
 					echo "<li role='presentation'><a href='".CHtml::normalizeUrl(array('comments/index'))."'>Комментарии</a></li>";
@@ -34,25 +38,32 @@
 		</div>
 		<div class="toolbar">
 			<div class="row">				
-				<div class="col-lg-6 col-sm-8">
+				<div class="col-lg-8 col-sm-8">
 					<div class="btn-toolbar" role="toolbar" aria-label="...">
 						<div class="btn-group" role="group" aria-label="...">
-							<button type="button" class="btn btn-default btn-sm" id="newcat">Новая категория</button>
-							<button type="button" class="btn btn-default btn-sm">Скрыть категорию</button>
+							<button type="button" class="btn btn-info btn-sm" id="newcat">Новая категория</button>
+							<button type="button" class="btn btn-default btn-sm">Удалить категорию</button>
 						</div>
 						<div class="btn-group" role="group" aria-label="...">
-							<button type="button" class="btn btn-warning btn-sm" id="newprod">Добавить товар</button>
+							<button type="button" class="btn btn-info btn-sm" id="newprod">Добавить товар</button>
 						</div>
 						<div class="btn-group" role="group" aria-label="...">
-							<button type="button" class="btn btn-info btn-sm">Для мужчин</button>
-							<button type="button" class="btn btn-info btn-sm">Для женщин</button>
-							<button type="button" class="btn btn-info btn-sm">Для детей</button>
+							<button type="button" class="btn btn-default btn-sm" id="brands">Бренды</button>
+							<button type="button" class="btn btn-default btn-sm" id="sizes">Размеры</button>
+							<button type="button" class="btn btn-default btn-sm" id="materials">Материалы</button>
+							<button type="button" class="btn btn-default btn-sm" id="newsize">Сезоны</button>
+							<button type="button" class="btn btn-default btn-sm" id="colors">Цвета</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<?php echo $content; ?>
-	</div>	
+	</div>
+	<?php
+		$this->widget('application.extensions.widgets.BrandWidget');
+		$this->widget('application.extensions.widgets.MaterialWidget');
+		$this->widget('application.extensions.widgets.SizeWidget');
+	?>
 </body>
 </html>

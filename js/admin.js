@@ -7,7 +7,10 @@ $(document).ready(function() {
 	$(".hidden-layout").click(function(){
 		$(".pp-category").hide();
 		$(".pp-product").hide();
-		$(".hidden-layout").hide();
+		$("#pp_brand").hide();
+		$("#pp_material").hide();
+		$("#pp_size").hide();
+		$(".hidden-layout").hide();		
 
 		ressetProductForm();
 	});
@@ -50,6 +53,16 @@ $(document).ready(function() {
 		$("#step2_form").show();
 	});
 
+	$("#step3").click(function(){
+		$("#step3").addClass("active");
+		$("#step2").removeClass();
+		$("#step1").removeClass();
+
+		$("#step1_form").hide();
+		$("#step2_form").hide();
+		$("#step3_form").show();
+	});
+
 	function resetProductForm(){
 		$("#step1").addClass("active");
 		$("#step2").removeClass();		
@@ -67,6 +80,7 @@ $(document).ready(function() {
 			data: "div=" + $("#division").val(),
 			success: function(data){
 				$("#category").find("option").remove();
+				$("#category").append("<option value='0'></option>");
 
 				var categories = JSON.parse(data);
 				for(var i = 0; i < categories.length; i++)
@@ -114,5 +128,64 @@ $(document).ready(function() {
 
 	$(".form-group").click(function(){
 		$("#addprodbtn").attr("disabled", false);
+	});
+
+	//for BrandWidget
+	$("#brands").click(function(){
+		$("#pp_brand").show();
+		$(".hidden-layout").show();
+	});
+
+	$("#cnclbrand").click(function(){
+		$(".hidden-layout").click();
+	});
+
+	//for MaterialWidget
+	$("#materials").click(function(){
+		$("#pp_material").show();
+		$(".hidden-layout").show();
+	});
+
+	$("#cnclmaterial").click(function(){
+		$(".hidden-layout").click();
+	});
+
+	//for SizeWidget
+	$("#sizes").click(function(){
+		$("#pp_size").show();
+		$(".hidden-layout").show();
+	});
+
+	$("#cnclsize").click(function(){
+		$("#size_val").val("");
+		$(".hidden-layout").click();
+	});
+
+	$("#addsize").click(function(){
+		$.ajax({
+			type: "POST",
+			url: "index.php?r=admin/catalog/sizeajax",
+			data: "size=" + JSON.stringify({'val':$("#size_val").val(), 'std':$("#standard").val()}),
+			success: function(data){
+				var size = JSON.parse(data);
+				if(size.status == 1){
+					$("#sizelst").prepend("<option value='" + size.id + "'>" + size.val + "</option>");
+					$("#size_val").val("");
+				}
+				else{
+					$(".error").fadeIn();
+					setTimeout(function(){
+						$(".error").fadeOut();
+					}, 10000);
+				}
+
+			}
+		});		
+	});
+
+	$("#sizelst").change(function(){
+		$("select option:selected").each(function(){
+			$(this).attr("selected", false);
+		});
 	});
 });

@@ -8,7 +8,7 @@
 </div>
 <div class="leftside-bar">
 	<ul class="nav nav-pills nav-stacked">
-		<?php			
+		<?php
 			foreach($categories as $key => $category){
 				if($category["id"] == $cat)
 					echo "<li role='presentation' class='active' id='cat_".$category["id"]."'><a href='".CHtml::normalizeUrl(array('catalog/category', 'cat' => $category["id"]))."'>".$category["name"]."</a></li>";
@@ -19,9 +19,20 @@
 	</ul>
 </div>
 <div class="catalog-body">
-	
+	<?php
+		$imageUrl = Yii::app()->request->baseUrl."/images/products/";
+		foreach($products as $key => $product){
+			echo "<div class='row'>";
+			echo "<div class='col-lg-2'><img src='".$imageUrl."/".$product["category_id"]."/".$product["img"]."' width='100px'></div>";
+			echo "<div class='col-lg-3'>".$product["model"]."</div>";
+			echo "<div class='col-lg-1'>".$product["price"]."</div>";
+			echo "<div class='col-lg-3'>".$product["description"]."</div>";
+			echo "<div class='col-lg-3'></div>";
+			echo "</div>";
+		}
+	?>
 </div>
-<div class="pp-category">
+<div class="pp-modal pp-category">
 	<div class="pp-body">
 		<?php $this->beginWidget('CActiveForm', array('id'=>'cat_form',
 													  'action' => CHtml::normalizeUrl(array('catalog/addcat')))); ?>
@@ -65,7 +76,7 @@
 	</div>
 </div>
 
-<div class="pp-product">
+<div class="pp-modal pp-product">
 	<div class="pp-body">
 		<?php $this->beginWidget('CActiveForm', array('id'=>'prod_form',
 													  'action' => CHtml::normalizeUrl(array('catalog/addprod')))); ?>
@@ -77,8 +88,10 @@
 					<li id="step2"><a href="#">2</a></li>
 					<li><a href="#">&raquo;</a></li>
 					<li id="step3"><a href="#">3</a></li>
+					<li><a href="#">&raquo;</a></li>
+					<li id="step4"><a href="#">4</a></li>
 				</ul>
-			</div>			
+			</div>
 			
 			<div id="step1_form">
 				<div class="form-group">
@@ -104,9 +117,24 @@
 					<input type="text" class="form-control" id="model" name="model">
 				</div>
 				<div class="form-group">
+					<label for="">Бренд:</label>
+					<input type="text" class="form-control" id="brand" name="brand">
+				</div>
+				<div class="form-group">
 					<label for="">Цена:</label>
 					<input type="text" class="form-control" id="price" name="price" placeholder="549.00">
-				</div>				
+				</div>
+			</div>
+
+			<div id="step3_form">
+				<div class="form-group">
+					<label for="">Краткое описание:</label>
+					<textarea type="text" class="form-control" id="descript" name="descript"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="">Цена:</label>
+					<input type="text" class="form-control" id="price" name="price" placeholder="549.00">
+				</div>
 			</div>
 			
 			<div class="btn-group" role="group" aria-label="...">

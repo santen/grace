@@ -19,9 +19,10 @@ class CatalogController extends Controller
 		$category = $query->queryRow();
 		$query->reset();
 
+		$products = array();
 		$query->select("*");
-		$query->from("property");
-		$query->where("category_id=:category", array(":category" => 1));
+		$query->from("dress");
+		$query->where("category_id = :category", array(":category" => $cat));
 		$products = $query->queryAll();
 		$query->reset();
 
@@ -41,6 +42,38 @@ class CatalogController extends Controller
 		//$categories = array("id" => 1, "name" => "обedm", "div" => $div);
 
 		$this->renderPartial("ajaxCategory", array("categories" => $categories));
+	}
+
+	public function actionSubcategoriesAjax($cat){
+		$query = Yii::app()->db->createCommand();
+		$query->select("*");
+		$query->from("category");
+		$query->where("parent_id = :parent", array(":parent" => $cat));
+		$query->order("id");
+		$categories = $query->queryAll();
+		$query->reset();
+
+		$this->renderPartial("ajaxSubcategories", array("categories" => $categories));
+	}
+
+	public function actionSizeAjax(){
+		$size = json_decode($_POST["size"], true);
+
+		$sql = "insert into size (name, standard) values (:val, :std)";
+		$query = Yii::app()->db->createCommand($sql);
+		$query->bindParam(":val", $size["val"]);
+		$query->bindParam(":std", $size["std"]);
+		$query->execute();
+		$query->reset();
+
+		$sizeId = Yii::app()->db->getLastInsertID();
+		if($sizeId > 0)
+			$status = 1;
+		else
+			$status = 0;
+
+		$size = array_merge($size, array("status" => $status, "id" => $sizeId));
+		$this->renderPartial("ajaxSize", array("size" => $size));
 	}
 
 	public function actionAddCat(){
@@ -69,7 +102,7 @@ class CatalogController extends Controller
 		$query->bindParam(":price", $_POST["price"]);
 		$query->execute();
 
-		$this->redirect(array('catalog/category', "id" => $_POST["category"]));
+		$this->redirect(array('catalog/category', "cat" => $_POST["category"]));
 	}
 
 	private function getParent($id){
