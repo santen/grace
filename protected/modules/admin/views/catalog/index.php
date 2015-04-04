@@ -76,71 +76,163 @@
 	</div>
 </div>
 
-<div class="pp-modal pp-product">
+<div class="pp-modal pp-entity-double" id="pp_product">
 	<div class="pp-body">
 		<?php $this->beginWidget('CActiveForm', array('id'=>'prod_form',
 													  'action' => CHtml::normalizeUrl(array('catalog/addprod')))); ?>
 			<legend>Добавление товара</legend>
 			<div class="steps">
-				<ul class="pagination">
-					<li id="step1" class="active"><a href="#">1</a></li>
-					<li><a href="#">&raquo;</a></li>
-					<li id="step2"><a href="#">2</a></li>
-					<li><a href="#">&raquo;</a></li>
-					<li id="step3"><a href="#">3</a></li>
-					<li><a href="#">&raquo;</a></li>
-					<li id="step4"><a href="#">4</a></li>
-				</ul>
+				<div class="step-active" id="step1">1</div>
+				<div class="step-arrow"></div>
+				<div class="step" id="step2">2</div>
+				<div class="step-arrow"></div>
+				<div class="step" id="step3">3</div>
+				<div class="step-arrow"></div>
+				<div class="step" id="step4">4</div>
 			</div>
 			
-			<div id="step1_form">
-				<div class="form-group">
-					<label for="">Раздел:</label>
-					<select name="division" id="division" class="form-control" required="required">
-						<option value="0"></option>
-						<option value="1">Для мужчин</option>
-						<option value="2">Для женщин</option>
-						<option value="3">Для детей</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="">Выберите категорию:</label>
-					<select name="category" id="category" class="form-control" required="required">
-						<option value="0"></option>
-					</select>
+			<div class="step-form" id="step1_form">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="">Выберите категорию:</label>
+							<select name="category" id="category" class="form-control" required="required">
+								<option value="0"></option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="">Модель:</label>
+							<input type="text" name="model" id="model" class="form-control" required="required">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="">Цена:</label>
+							<input type="text" name="model" id="model" class="form-control" required="required">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="">Артикул:</label>
+							<input type="text" name="model" id="model" class="form-control" required="required">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="">Основное изображение:</label>
+							<button type="button" class="btn btn-default">Добавить изображение</button>
+						</div>
+					</div>
+					<div class="col-sm-6">					
+					</div>
 				</div>
 			</div>
 			
 			<div id="step2_form">
 				<div class="form-group">
-					<label for="">Модель:</label>
-					<input type="text" class="form-control" id="model" name="model">
+					<label for="">Краткое описание:</label>
+					<textarea name="brief" id="brief" class="form-control"></textarea>	
 				</div>
-				<div class="form-group">
-					<label for="">Бренд:</label>
-					<input type="text" class="form-control" id="brand" name="brand">
-				</div>
-				<div class="form-group">
-					<label for="">Цена:</label>
-					<input type="text" class="form-control" id="price" name="price" placeholder="549.00">
-				</div>
+				<div class="form-inline">
+					<div class="form-group">
+						<label for="">Состав:</label>
+						<input type="text" name="matpercent" id="matpercent" class="form-control" placeholder="47%">
+						<input type="text" name="material" id="material" class="form-control" placeholder="материал">
+						<button type="button" class="btn btn-default btn-sm">Добавить</button>
+					</div>
+				</div>				
+				<div class="row">
+					<div class="col-sm-1"></div>
+					<div class="col-sm-7">
+						<select name="content" id="content" class="form-control" size="5" multiple="">
+							<option value=""></option>
+						</select>
+					</div>
+				</div>				
 			</div>
 
 			<div id="step3_form">
-				<div class="form-group">
-					<label for="">Краткое описание:</label>
-					<textarea type="text" class="form-control" id="descript" name="descript"></textarea>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label for="">Размеры:</label>
+						<input type="text" name="sizecount" id="sizecount" class="form-control" placeholder="Количество">
+						<select name="" id="input" class="form-control">
+							<option value="0">Размер</option>
+						</select>
+						<input type="text" name="color" id="color" class="form-control" placeholder="Цвет">
+						<div class="colors-list"></div>
+						<button type="button" class="btn btn-default btn-sm">Добавить</button>
+					</div>
 				</div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label for="">&nbsp;</label>
+						<select name="" id="input" class="form-control" size="7" multiple="">
+							<option value="0">Размеры</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-12" id="size_statusbar">
+					<div id="current-color"></div><div id="current-data">Количество: 12<br />Размер: 52</div>
+				</div>
+			</div>
+
+			<div id="step4_form">
 				<div class="form-group">
-					<label for="">Цена:</label>
-					<input type="text" class="form-control" id="price" name="price" placeholder="549.00">
+					<label for="">Изображения:</label>
+					<input type="file" id="prodimages">
+					<button type="button" class="btn btn-default btn-sm">Добавить изображение</button>
+				</div>
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="prod-img"></div>
+					</div>
+					<div class="col-sm-2">
+						<div class="prod-img"></div>
+					</div>
+					<div class="col-sm-2">
+						<div class="prod-img"></div>
+					</div>
+					<div class="col-sm-2">
+						<div class="prod-img"></div>
+					</div>
+					<div class="col-sm-2">
+						<div class="prod-img"></div>
+					</div>
+					<div class="col-sm-2">
+						<div class="prod-img"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="prod-img"></div>
+					</div>
+					<div class="col-sm-2">
+						<div class="prod-img"></div>
+					</div>
+					<div class="col-sm-2">
+						<div class="prod-img"></div>
+					</div>
+					<div class="col-sm-2">
+						<div class="prod-img"></div>
+					</div>
+					<div class="col-sm-2">
+						<div class="prod-img"></div>
+					</div>
+					<div class="col-sm-2">
+						<div class="prod-img"></div>
+					</div>
 				</div>
 			</div>
 			
-			<div class="btn-group" role="group" aria-label="...">
-				<button type="submit" class="btn btn-warning" id="addprodbtn">Добавить</button>
-				<button type="button" class="btn btn-success" id="okbtn">Ok</button>
-				<button type="button" class="btn btn-default" id="cnclbtn">Отмена</button>
+			<div class="product-buttons">
+				<div class="btn-group" role="group" aria-label="...">
+					<button type="submit" class="btn btn-warning" id="addprodbtn">Добавить</button>
+					<button type="button" class="btn btn-success" id="okbtn">Ok</button>
+					<button type="button" class="btn btn-default" id="cnclbtn">Отмена</button>
+				</div>
 			</div>
 		<?php $this->endWidget(); ?>
 	</div>

@@ -3,7 +3,7 @@
 		<div class="entity-list">
 			<label for="">Размеры:</label>
 			<?php
-				echo "<select class='form-control' id='sizelst' multiple>";
+				echo "<select class='form-control' id='sizelst' size='10'>";
 				foreach ($sizes as $key => $size)
 					echo "<option value=".$size["id"]."'>".$size["name"]."</option>";
 				echo "</select>";

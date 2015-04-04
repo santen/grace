@@ -79,9 +79,93 @@
 	margin-right: 10px;
 }
 
+.step-form{
+	margin-top: 10px;
+}
+
+.product-leftside{
+	width: 50%;
+	height: 250px;
+	float: left;
+}
+
+.product-rightside{
+	width: 50%;
+	float: left;
+}
+
+#brief{
+	height: 110px;
+}
+
+#content{
+	width: 195px;
+}
+
+#prodimages{
+	display: none;
+}
+
+.prod-img{
+	height: 80px;
+	margin-top: 15px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #787878;
+}
+
+#current-data{
+	margin-left: 10px;
+	float: left;
+	color: #787878;
+	font-size: 14px;
+}
+
+#current-color{	
+	width: 70px;
+	height: 70px;
+	float: left;
+	background: orange;
+}
+
 .steps{
-	width: 100%;
+	width: 280px;
+	height: 40px;
+	margin: 0 auto;
 	text-align: center;
+}
+
+.step, .step-active{
+	width: 30px;
+	height: 30px;
+	float: left;
+	margin: 5px;
+	padding-top: 2px;
+	border-radius: 15px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #9CD10F;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.step{
+	color: #9CD10F;
+	background: #FFF;
+	cursor: pointer;
+}
+
+.step-active{
+	color: #FFF;
+	background: #9CD10F;
+}
+
+.step-arrow{
+	width: 40px;
+	height: 30px;
+	float: left;
+	margin-top: 5px;
+	background: url('../images/arrow_right.png');
 }
 
 #step1_form{
@@ -96,8 +180,24 @@
 	display: none;
 }
 
+#step4_form{
+	display: none;
+}
+
 #addprodbtn{
 	display: none;
+}
+
+.colors-list{
+	width: 310px;
+	height: 150px;
+	background: #FFF;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #787878;
+	position: absolute;
+	display: none;
+	z-index: 12;	
 }
 
 .error{
@@ -116,35 +216,38 @@
 	display: none;
 }
 
-.pp-entity-2{
-	width: 350px;
-	height: 360px;
+.pp-entity-2, .pp-entity-3, .pp-entity-double{
 	border-style: solid;
 	border-color: #787878;
 	border-width: 1px;
 	border-radius: 10px;
 	background: rgba(255, 255, 255, 0.8);
+}
+
+.pp-entity-2{
+	width: 350px;
+	height: 360px;	
 }
 
 .pp-entity-3{
 	width: 350px;
 	height: 430px;
-	border-style: solid;
-	border-color: #787878;
-	border-width: 1px;
-	border-radius: 10px;
-	background: rgba(255, 255, 255, 0.8);
 }
 
-#entitylst{
-	height: 200px;
+.pp-entity-double{
+	width: 700px;
+	height: 430px;
 }
 
-/* SizeWidget */
-#sizelst{
-	height: 200px;
+.product-buttons{
+	left: 10px;
+	bottom: 10px;
+	position: absolute;
 }
-/* end SizeWidget */
+
+.entity-list{
+	size: 10;
+}
 
 .entity-list{
 	height: 230px;

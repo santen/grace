@@ -72,8 +72,46 @@ class CatalogController extends Controller
 		else
 			$status = 0;
 
-		$size = array_merge($size, array("status" => $status, "id" => $sizeId));
+		$size = array_merge($size, array("status" => $status, "sizeid" => $sizeId));
 		$this->renderPartial("ajaxSize", array("size" => $size));
+	}
+
+	public function actionMaterialAjax(){
+		$material = json_decode($_POST["material"], true);
+
+		$sql = "insert into material (name) values (:name)";
+		$query = Yii::app()->db->createCommand($sql);
+		$query->bindParam(":name", $material["name"]);
+		$query->execute();
+		$query->reset();
+
+		$materialId = Yii::app()->db->getLastInsertID();
+		if($materialId > 0)
+			$status = 1;
+		else
+			$status = 0;
+
+		$material = array_merge($material, array("status" => $status, "materialid" => $materialId));
+		$this->renderPartial("ajaxMaterial", array("material" => $material));
+	}
+
+	public function actionBrandAjax(){
+		$brand = json_decode($_POST["brand"], true);
+
+		$sql = "insert into brands (name) values (:name)";
+		$query = Yii::app()->db->createCommand($sql);
+		$query->bindParam(":name", $brand["name"]);
+		$query->execute();
+		$query->reset();
+
+		$brandId = Yii::app()->db->getLastInsertID();
+		if($brandId > 0)
+			$status = 1;
+		else
+			$status = 0;
+
+		$brand = array_merge($brand, array("status" => $status, "brandid" => $brandId));
+		$this->renderPartial("ajaxBrand", array("brand" => $brand));
 	}
 
 	public function actionAddCat(){

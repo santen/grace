@@ -3,7 +3,7 @@
 		<div class="entity-list">
 			<label for="">Материалы:</label>
 			<?php
-				echo "<select class='form-control' id='entitylst' multiple>";
+				echo "<select class='form-control' id='materiallst' size='10'>";
 				foreach ($materials as $key => $material)
 					echo "<option value=".$material["id"]."'>".$material["name"]."</option>";
 				echo "</select>";
