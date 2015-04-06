@@ -14,7 +14,7 @@ class ColorWidget extends CWidget
 		$query->select("id, name");
 		$query->from("color");		
 
-		$this->render('color', array('colors' => $query->queryAll()));
+		$this->render('colors', array('colors' => $query->queryAll()));
 		// этот метод будет вызван внутри CBaseController::endWidget()
 	}
 }

@@ -6,10 +6,7 @@ $(document).ready(function() {
 
 	$(".hidden-layout").click(function(){
 		$(".pp-category").hide();
-		$("#pp_product").hide();
-		$("#pp_brand").hide();
-		$("#pp_material").hide();
-		$("#pp_size").hide();
+		$(".pp-modal").hide();
 		$(".hidden-layout").hide();		
 
 		ressetProductForm();
@@ -172,10 +169,8 @@ $(document).ready(function() {
 		$(".hidden-layout").click();
 	});
 
-	$(".form-control").change(function(){
-		$("select option:selected").each(function(){
-			$(this).attr("selected", false);
-		});
+	$("#colorlst").click(function(){
+
 	});
 
 	$("#addsize").click(function(){
@@ -200,6 +195,7 @@ $(document).ready(function() {
 		});		
 	});
 
+	// MaterialWidget
 	$("#addmaterial").click(function(){
 		$.ajax({
 			type: "POST",
@@ -219,6 +215,7 @@ $(document).ready(function() {
 		});
 	});
 
+	// BrandWidget
 	$("#addbrand").click(function(){
 		$.ajax({
 			type: "POST",
@@ -237,4 +234,64 @@ $(document).ready(function() {
 			}
 		});
 	});
+
+	// ColorWidget
+	$("#colors").click(function(){
+		$("#pp_color").show();
+		$(".hidden-layout").show();
+	});
+
+	$("#select_color").click(function(){
+		$("#fcolorimg").click();
+	});
+
+	$("#addcolor").click(function(){
+		var formData = new FormData();
+		formData.append("color_name", $("#color_name").val());
+		formData.append("fcolorimg", $("#fcolorimg")[0].files[0]);		
+
+		$.ajax({
+			type: "POST",
+			url: "index.php?r=admin/catalog/addcolorajax",
+			processData: false,
+			contentType: false,
+			data: formData,
+			success: function(data){
+				var color = JSON.parse(data);
+				if(color.status == 1){
+					$("#colorlst").prepend("<option value='" + color.colorid + "'>" + color.name + "</option>");
+					$("#sample_color").attr("src", color.img);
+					$("#color_name").val("");
+				}
+				else{
+					$(".error").fadeIn();
+					setTimeout(function(){$(".error").fadeOut();}, 10000);
+				}
+			}
+		});
+	});	
+
+	$("#colorlst").click(function(e){
+		var id = $("#colorlst").val();						
+		$(".color-preview").offset({ top: e.pageY, left: e.pageX + 20 });
+
+		$.ajax({
+			type: "GET",
+			url: "index.php?r=admin/catalog/getcolorajax&id=" + id,
+			success: function(data){
+				var color = JSON.parse(data);
+				$("#color-img").attr("src", color.img);
+				$(".color-preview").fadeIn();
+				setTimeout(function(){$(".color-preview").fadeOut();}, 3000);
+			}
+		});
+	});	
+	// end ColorWidget
+
+	// SeasonWidget
+	$("#seasons").click(function(){
+		$("#pp_season").show();
+		$(".hidden-layout").show();
+	});
+	// end SeasonWidget
 });

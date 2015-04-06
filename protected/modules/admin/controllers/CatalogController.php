@@ -1,5 +1,8 @@
 <?php
 define("DIVISIONS_COUNT", 3);
+define("COLOR_IMAGES", Yii::app()->request->baseUrl."/images/colors/");
+
+Yii::import('system.web');
 
 class CatalogController extends Controller
 {
@@ -114,6 +117,55 @@ class CatalogController extends Controller
 		$this->renderPartial("ajaxBrand", array("brand" => $brand));
 	}
 
+	public function actionAddColorAjax(){
+		$colorName = $_POST["color_name"];
+		$fileColor = $_FILES["fcolorimg"]["name"];
+		$extension = $this->getExtension($fileColor);
+
+		$status = 0;
+		$colorId = 0;
+
+		if($this->isValidImage($extension)){
+			$colorDir = "images/colors/";
+			$fileColor = time().".".$extension;
+			$filePath = $colorDir.$fileColor;
+			
+
+			$file = new CUploadedFile($fileColor, $_FILES["fcolorimg"]["tmp_name"], "image/".$extension, $_FILES["fcolorimg"]["size"], 0);
+			$file->saveAs($filePath);
+
+			$sql = "insert into color (name, img) values (:name, :img)";
+			$query = Yii::app()->db->createCommand($sql);
+			$query->bindParam(":name", $colorName);
+			$query->bindParam(":img", $fileColor);
+			$query->execute();
+			$query->reset();
+
+			$colorId = Yii::app()->db->getLastInsertID();
+			if($colorId > 0)
+				$status = 1;
+		}
+
+		$colorUrl = COLOR_IMAGES.$filePath;
+		$colorAdded = array("colorid" => $colorId, 
+							"name" => $colorName, 
+							"img" => $colorUrl, 
+							"status" => $status);
+		$this->renderPartial("ajaxColor", array("color" => $colorAdded));
+	}
+
+	public function actionGetColorAjax($id){		
+		$query = Yii::app()->db->createCommand();
+		$query->select("*");
+		$query->from("color");
+		$query->where("id = :id", array(":id" => $id));
+		$color = $query->queryRow();
+
+		$color["img"] = COLOR_IMAGES.$color["img"];
+
+		$this->renderPartial("ajaxColor", array("color" => $color));
+	}
+
 	public function actionAddCat(){
 		$sql = "insert into category (name, parent_id, division, tablename, cdate) values (:name, :parent, :division, :tablename, now())";
 		$query = Yii::app()->db->createCommand($sql);
@@ -145,6 +197,21 @@ class CatalogController extends Controller
 
 	private function getParent($id){
 		return Category::model()->find("parent_id = :id", array(":id" => $id));
+	}
+
+	private function getExtension($filename){
+		$extension = explode(".", $filename)[1];
+
+		return $extension;
+	}
+
+	private function isValidImage($extension){
+		$validFormats = array("jpg", "png", "gif", "bmp","jpeg");
+
+		if(in_array($extension, $validFormats))
+			return true;
+		else
+			return false;
 	}
 	// Uncomment the following methods and override them if needed
 	/*

@@ -174,8 +174,8 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-sm-12" id="size_statusbar">
-					<div id="current-color"></div><div id="current-data">Количество: 12<br />Размер: 52</div>
+				<div class="col-sm-12 statusbar">
+					<div id="current-color"></div><div id="current-data">Оранжевый<br />Количество: 12<br />Размер: 52</div>
 				</div>
 			</div>
 

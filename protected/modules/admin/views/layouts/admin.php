@@ -51,7 +51,7 @@
 							<button type="button" class="btn btn-default btn-sm" id="brands">Бренды</button>
 							<button type="button" class="btn btn-default btn-sm" id="sizes">Размеры</button>
 							<button type="button" class="btn btn-default btn-sm" id="materials">Материалы</button>
-							<button type="button" class="btn btn-default btn-sm" id="newsize">Сезоны</button>
+							<button type="button" class="btn btn-default btn-sm" id="seasons">Сезоны</button>
 							<button type="button" class="btn btn-default btn-sm" id="colors">Цвета</button>
 						</div>
 					</div>
@@ -64,6 +64,7 @@
 		$this->widget('application.extensions.widgets.BrandWidget');
 		$this->widget('application.extensions.widgets.MaterialWidget');
 		$this->widget('application.extensions.widgets.SizeWidget');
+		$this->widget('application.extensions.widgets.ColorWidget');
 	?>
 </body>
 </html>

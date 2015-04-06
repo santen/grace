@@ -1,29 +1,41 @@
-<div class="pp-modal" id="pp_color">
+<?php
+$baseUrl = Yii::app()->request->baseUrl;
+?>
+<div class="pp-modal pp-entity-double" id="pp_color">
 	<div class="pp-body">
-		<div class="entity-list">
-			<label for="">Материалы:</label>
-			<?php
-				echo "<select class='form-control' id='entitylst' multiple>";
-				foreach ($materials as $key => $material)
-					echo "<option value=".$material["id"]."'>".$material["name"]."</option>";
-				echo "</select>";
-			?>
+		<div class="color-preview">
+			<img src="" id="color-img">
 		</div>
-		<div class="form-group">
-			<label for="">Название:</label>
-			<input type="text" class="form-control" id="material_name" placeholder="Название цвета">
-		</div>
-		<div class="form-group">
-			<label for="">Код:</label>
-			<input type="text" class="form-control" id="material_name" placeholder="Например, 4A0FD7 или F1D">
-		</div>
-		<div class="form-group">
-			<label for="">Изображение:</label>
-			<img src="https://api.fnkr.net/testimg/30x30/FFF/FFF/" id="colorimg">
-			<button type="button" class="btn btn-default btn-sm" id="selectcolor">Выбрать</button>
-			<input type="file" id="fcolorimg">
-		</div>
-		
-		<button type="button" class="btn btn-default btn-sm" id="cnclmaterial">Отмена</button>
+		<div class="row">
+			<div class="col-sm-6">
+				<form action="" method="POST" enctype="multipart/form-data" id="color_form" role="form">				
+					<div class="form-group">
+						<label for="">&nbsp;</label>
+						<input type="file" id="fcolorimg" name="fcolorimg">
+						<input type="text" class="form-control" id="color_name" name="color_name" placeholder="Название цвета">						
+						<button type="button" class="btn btn-default btn-sm" id="select_color">Загрузить изображение</button>
+					</div>
+					<div class="statusbar">						
+						<?php
+							echo "<img src='".$baseUrl."/images/colors/no-color.png' id='sample_color'>";
+						?>
+					</div>
+					<button type="button" class="btn btn-primary btn-sm" id="addcolor">Добавить</button>
+					<button type="button" class="btn btn-default btn-sm" id="cnclmaterial">Отмена</button>
+				</form>
+			</div>
+			<div class="col-sm-6">
+				<div class="entity-list">
+					<label for="">Цвета:</label>
+					<input type="text" class="form-control" id="material_name" placeholder="поиск">
+					<?php
+						echo "<select class='form-control' id='colorlst' multiple size='18'>";
+						foreach ($colors as $key => $color)
+							echo "<option value=".$color["id"]."'>".$color["name"]."</option>";
+						echo "</select>";
+					?>
+				</div>
+			</div>
+		</div>		
 	</div>
 </div>
