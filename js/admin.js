@@ -269,7 +269,7 @@ $(document).ready(function() {
 				}
 			}
 		});
-	});	
+	});
 
 	$("#colorlst").click(function(e){
 		var id = $("#colorlst").val();						
@@ -292,6 +292,25 @@ $(document).ready(function() {
 	$("#seasons").click(function(){
 		$("#pp_season").show();
 		$(".hidden-layout").show();
+	});
+
+	$("#add_season").click(function(){
+		$.ajax({
+			type: "POST",
+			url: "index.php?r=admin/catalog/addseasonajax",
+			data: "season=" + JSON.stringify({'name':$("#season_val").val()}),
+			success: function(data){
+				var season = JSON.parse(data);
+				if(season.status == 1){
+					$("#seasonlst").prepend("<option value='" + season.seasonid + "'>" + season.name + "</option>");
+					$("#season_name").val("");
+				}
+				else{
+					$(".error").fadeIn();
+					setTimeout(function(){$(".error").fadeOut();}, 10000);
+				}
+			}
+		});
 	});
 	// end SeasonWidget
 });

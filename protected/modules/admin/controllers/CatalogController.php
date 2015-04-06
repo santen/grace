@@ -166,6 +166,25 @@ class CatalogController extends Controller
 		$this->renderPartial("ajaxColor", array("color" => $color));
 	}
 
+	public function actionAddSeasonAjax(){
+		$season = json_decode($_POST["season"], true);
+
+		$sql = "insert into season (name) values (:name)";
+		$query = Yii::app()->db->createCommand($sql);
+		$query->bindParam(":name", $season["name"]);
+		$query->execute();
+		$query->reset();
+
+		$seasonId = Yii::app()->db->getLastInsertID();
+		if($seasonId > 0)
+			$status = 1;
+		else
+			$status = 0;
+
+		$season = array_merge($season, array("status" => $status, "seasonid" => $seasonId));
+		$this->renderPartial("ajaxSeason", array("season" => $season));
+	}
+
 	public function actionAddCat(){
 		$sql = "insert into category (name, parent_id, division, tablename, cdate) values (:name, :parent, :division, :tablename, now())";
 		$query = Yii::app()->db->createCommand($sql);

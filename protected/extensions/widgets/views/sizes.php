@@ -2,7 +2,7 @@
 	<div class="pp-body">
 		<div class="entity-list">
 			<label for="">Размеры:</label>
-			<input type="text" class="form-control" id="material_name" placeholder="поиск">
+			<input type="text" class="form-control" id="size_name" placeholder="поиск">
 			<?php
 				echo "<select class='form-control' id='sizelst' size='10'>";
 				foreach ($sizes as $key => $size)
