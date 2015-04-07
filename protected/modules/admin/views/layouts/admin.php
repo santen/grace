@@ -66,6 +66,7 @@
 		$this->widget('application.extensions.widgets.SizeWidget');
 		$this->widget('application.extensions.widgets.ColorWidget');
 		$this->widget('application.extensions.widgets.SeasonWidget');
+		$this->widget('application.extensions.widgets.ProductWidget');
 	?>
 </body>
 </html>

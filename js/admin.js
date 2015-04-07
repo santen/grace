@@ -22,9 +22,7 @@ $(document).ready(function() {
 		$("#pp_product").show();
 		$(".hidden-layout").show();
 
-		$("#step1_form").show();
-		$("#add_prod").hide();
-		$("#okbtn").show();
+		$("#step1_form").show();		
 	});
 
 	$("#okbtn").click(function(){
@@ -66,12 +64,11 @@ $(document).ready(function() {
 		$("#step1").removeClass();
 		$("#step1").addClass("step-active");
 
-		$("#step1_form").show();
-		$("#step2_form").hide();
-		$("#step3_form").hide();
-		$("#step4_form").hide();
-
+		$("#step " + window.currentStep + "_form").hide();
 		$("#add_prod").hide();
+		$("#okbtn").show();
+
+		window.currentStep = 1;
 	}
 
 	$("#division").change(function(){
@@ -86,6 +83,28 @@ $(document).ready(function() {
 				var categories = JSON.parse(data);
 				for(var i = 0; i < categories.length; i++)
 					$("#category").append("<option value='" + categories[i].id + "'>" + categories[i].name + "</option>");
+			}
+		});
+	});
+
+	$("#prod_img").click(function(){
+		$("#fmain_img").click();
+	});
+
+	$("#fmain_img").change(function(){
+		var formData = new FormData();
+		formData.append("mainimg", $("#fmain_img")[0].files[0]);
+		formData.append("field", "mainimg");
+
+		$.ajax({
+			type: "POST",
+			url: "index.php?r=admin/catalog/productajax",
+			processData: false,
+			contentType: false,
+			data: formData,
+			success: function(data){
+				var mainImg = JSON.parse(data);
+				$("#main_img").attr("src", mainImg.img);
 			}
 		});
 	});
@@ -131,27 +150,11 @@ $(document).ready(function() {
 		$("#addprodbtn").attr("disabled", false);
 	});
 
-	//for BrandWidget
-	$("#brands").click(function(){
-		$("#pp_brand").show();
-		$(".hidden-layout").show();
-	});
-
 	$("#cnclbrand").click(function(){
 		$(".hidden-layout").click();
 	});
 
-	//for MaterialWidget
-	$("#materials").click(function(){
-		$("#pp_material").show();
-		$(".hidden-layout").show();
-	});
-
-	$("#cnclmaterial").click(function(){
-		$(".hidden-layout").click();
-	});
-
-	//for SizeWidget
+	// SizeWidget
 	$("#sizes").click(function(){
 		$("#pp_size").show();
 		$(".hidden-layout").show();
@@ -160,10 +163,6 @@ $(document).ready(function() {
 	$("#cnclsize").click(function(){
 		$("#size_val").val("");
 		$(".hidden-layout").click();
-	});
-
-	$("#colorlst").click(function(){
-
 	});
 
 	$("#addsize").click(function(){
@@ -187,8 +186,18 @@ $(document).ready(function() {
 			}
 		});		
 	});
+	// end SizeWidget
 
 	// MaterialWidget
+	$("#materials").click(function(){
+		$("#pp_material").show();
+		$(".hidden-layout").show();
+	});
+
+	$("#cnclmaterial").click(function(){
+		$(".hidden-layout").click();
+	});
+
 	$("#addmaterial").click(function(){
 		$.ajax({
 			type: "POST",
@@ -207,8 +216,14 @@ $(document).ready(function() {
 			}
 		});
 	});
+	// end MaterialWidget
 
-	// BrandWidget
+	//for BrandWidget
+	$("#brands").click(function(){
+		$("#pp_brand").show();
+		$(".hidden-layout").show();
+	});
+
 	$("#addbrand").click(function(){
 		$.ajax({
 			type: "POST",
@@ -227,6 +242,7 @@ $(document).ready(function() {
 			}
 		});
 	});
+	// end BrandWidget
 
 	// ColorWidget
 	$("#colors").click(function(){

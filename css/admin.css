@@ -39,6 +39,10 @@
 	z-index: 9;
 }
 
+.input-file{
+	display: none !important;
+}
+
 .pp-modal{
 	top: 0;
 	left: 0;
@@ -106,6 +110,7 @@
 }
 
 .prod-img{
+	width: 88px;
 	height: 80px;
 	margin-top: 15px;
 	border-style: solid;
