@@ -19,18 +19,34 @@
 	</ul>
 </div>
 <div class="catalog-body">
-	<?php
-		$imageUrl = Yii::app()->request->baseUrl."/images/products/";
-		foreach($products as $key => $product){
-			echo "<div class='row'>";
-			echo "<div class='col-lg-2'><img src='".$imageUrl."/".$product["category_id"]."/".$product["img"]."' width='100px'></div>";
-			echo "<div class='col-lg-3'>".$product["model"]."</div>";
-			echo "<div class='col-lg-1'>".$product["price"]."</div>";
-			echo "<div class='col-lg-3'>".$product["description"]."</div>";
-			echo "<div class='col-lg-3'></div>";
-			echo "</div>";
-		}
-	?>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+					<td>Главное фото</td>
+					<td>Модель</td>
+					<td>Цена</td>
+					<td>Краткое описание</td>
+					<td>Количество/Размер/Цвет</td>
+			</tr>
+		</thead>
+		<tbody>
+				<?php
+					$imageUrl = Yii::app()->request->baseUrl."/images/products/";
+					foreach($products as $key => $product){
+						echo "<tr>";
+						echo "<td><img src='".$imageUrl."/".$product["category_id"]."/".$product["main_img"]."' width='100px'></td>";
+						echo "<td>".$product["name"]."</td>";
+						echo "<td>".$product["price"]."</td>";
+						echo "<td>".$product["description"]."</td>";
+						echo "<td>";
+						foreach($product["count"] as $key => $count){
+							echo $count["samples"]." - ".$count["size"]." - ".$count["color"]."<br />";
+						}
+						echo "</td></tr>";
+					}
+				?>
+		</tbody>
+	</table>	
 </div>
 <div class="pp-modal pp-category">
 	<div class="pp-body">
@@ -229,7 +245,7 @@
 			
 			<div class="product-buttons">
 				<div class="btn-group" role="group" aria-label="...">
-					<button type="submit" class="btn btn-warning" id="addprodbtn">Добавить</button>
+					<button type="submit" class="btn btn-warning" id="add_prod">Добавить</button>
 					<button type="button" class="btn btn-success" id="okbtn">Ok</button>
 					<button type="button" class="btn btn-default" id="cnclbtn">Отмена</button>
 				</div>

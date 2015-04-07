@@ -1,15 +1,12 @@
 <div class="pp-modal pp-entity-2" id="pp_season">
 	<div class="pp-body">
-		<div class="entity-list">
-			<label for="">Сезоны:</label>
-			<input type="text" class="form-control" id="season_name" placeholder="поиск">
-			<?php
-				echo "<select class='form-control' id='seasonlst' size='10'>";
-				foreach ($seasons as $key => $season)
-					echo "<option value=".$season["id"]."'>".$season["name"]."</option>";
-				echo "</select>";
-			?>
-		</div>
+		<label for="">Сезоны:</label>			
+		<?php
+			echo "<select class='form-control' id='seasonlst' size='12'>";
+			foreach ($seasons as $key => $season)
+				echo "<option value=".$season["id"]."'>".$season["name"]."</option>";
+			echo "</select>";
+		?>
 		<div class="form-group">
 			<label for="">Сезон:</label>
 			<input type="text" class="form-control" id="season_val" placeholder="Демисезон">

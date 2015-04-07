@@ -24,10 +24,15 @@ class CatalogController extends Controller
 
 		$products = array();
 		$query->select("*");
-		$query->from("dress");
+		$query->from("product");
+		//$query->join('p_color', 'product.id=p_color.product_id');
+		//$query->join('p_size', 'product.id=p_size.product_id');
 		$query->where("category_id = :category", array(":category" => $cat));
 		$products = $query->queryAll();
 		$query->reset();
+
+		for($i = 0; $i < count($products); $i++)
+			$products[$i] = array_merge($products[$i], array("count" => $this->getCountProducts($products[$i]["id"])));
 
 		$this->layout = 'admin';
 		$this->render('index', array("cat" => $cat, "categories" => $categories, "products" => $products));
@@ -231,6 +236,19 @@ class CatalogController extends Controller
 			return true;
 		else
 			return false;
+	}
+
+	private function getCountProducts($productId){
+		$query = Yii::app()->db->createCommand();
+		$query->select("size.name as size, color.name as color, p_count.samples");
+		$query->from("p_count");		
+		$query->join("size", "p_count.size_id = size.id");
+		$query->join("color", "p_count.color_id = color.id");
+		$query->where("product_id = :id", array(":id" => $productId));
+		$count = $query->queryAll();
+		$query->reset();
+
+		return $count;
 	}
 	// Uncomment the following methods and override them if needed
 	/*

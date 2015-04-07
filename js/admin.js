@@ -1,3 +1,5 @@
+var currentStep = 1;
+
 $(document).ready(function() {
 	$("#newcat").click(function(){
 		$(".pp-category").show();
@@ -5,11 +7,11 @@ $(document).ready(function() {
 	});
 
 	$(".hidden-layout").click(function(){
-		$(".pp-category").hide();
-		$(".pp-modal").hide();
+		$(".pp-category").hide();		
 		$(".hidden-layout").hide();		
 
-		ressetProductForm();
+		resetProductForm();
+		$(".pp-modal").hide();
 	});
 
 	$("#cnclbtn").click(function(){
@@ -21,64 +23,55 @@ $(document).ready(function() {
 		$(".hidden-layout").show();
 
 		$("#step1_form").show();
+		$("#add_prod").hide();
+		$("#okbtn").show();
 	});
 
 	$("#okbtn").click(function(){
-		$("#step1").removeClass();
-		$("#step2").addClass("active");
+		$("#step" + window.currentStep).switchClass("step-active", "step");
+		$('#step' + window.currentStep + "_form").hide();
 
-		$("#step1_form").hide();
-		$("#step2_form").show();
+		window.currentStep++;
+		$("#step" + window.currentStep).switchClass("step", "step-active");
+		$('#step' + window.currentStep + "_form").show();
 
-		$("#addprodbtn").show();
-		$("#okbtn").hide();
+		if(window.currentStep == 4){
+			$("#add_prod").show();
+			$("#okbtn").hide();
+		}
 	});
 
-	$("#step1").click(function(){
-		//$("#step1").addClass("active");
-		//$("#step2").removeClass();
+	$(".step").click(function(){
+		var step = $(this).attr("id");		
+		$("#" + step).switchClass("step", "step-active");
+		$("#step" + window.currentStep).switchClass("step-active", "step");
+		//скрываем предыдущую часть формы...
+		$("#step" + window.currentStep + "_form").hide();
+		window.currentStep = step[4];
+		// и показываем текущую часть
+		$("#step" + window.currentStep + "_form").show();
+	});
 
+	$("#step1").click(function(){		
+		$("#step" + window.currentStep).switchClass("step-active", "step");
+		$("#step" + window.currentStep + "_form").hide();
+
+		$("#step1").switchClass("step", "step-active");
+		window.currentStep = 1;
 		$("#step1_form").show();
-		$("#step2_form").hide();
-	});
-
-	$("#step2").click(function(){
-		//$("#step2").addClass("active");
-		//$("#step1").removeClass();
-
-		$("#step1_form").hide();
-		$("#step2_form").show();
-	});
-
-	$("#step3").click(function(){
-		//$("#step3").addClass("active");
-		//$("#step2").removeClass();
-		//$("#step1").removeClass();
-
-		$("#step1_form").hide();
-		$("#step2_form").hide();
-		$("#step3_form").show();
-	});
-
-	$("#step4").click(function(){
-		//$("#step3").addClass("active");
-		//$("#step2").removeClass();
-		//$("#step1").removeClass();
-
-		$("#step1_form").hide();
-		$("#step2_form").hide();
-		$("#step3_form").hide();
-		$("#step4_form").show();
 	});
 
 	function resetProductForm(){
-		$("#step1").addClass("active");
-		$("#step2").removeClass();		
+		$("#step" + window.currentStep).switchClass("step-active", "step");		
+		$("#step1").removeClass();
+		$("#step1").addClass("step-active");
 
-		$("#step1_form").hide();
+		$("#step1_form").show();
 		$("#step2_form").hide();
+		$("#step3_form").hide();
+		$("#step4_form").hide();
 
-		//$("#prod_form")
+		$("#add_prod").hide();
 	}
 
 	$("#division").change(function(){

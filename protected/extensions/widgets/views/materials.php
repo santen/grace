@@ -1,14 +1,12 @@
 <div class="pp-modal pp-entity-2" id="pp_material">
 	<div class="pp-body">
-		<div class="entity-list">
-			<label for="">Материалы:</label>
-			<?php
-				echo "<select class='form-control' id='materiallst' size='10'>";
-				foreach ($materials as $key => $material)
-					echo "<option value=".$material["id"]."'>".$material["name"]."</option>";
-				echo "</select>";
-			?>
-		</div>
+		<label for="">Материалы:</label>
+		<?php
+			echo "<select class='form-control' id='materiallst' size='12'>";
+			foreach ($materials as $key => $material)
+				echo "<option value=".$material["id"]."'>".$material["name"]."</option>";
+			echo "</select>";
+		?>
 		<div class="form-group">
 			<label for="">Название:</label>
 			<input type="text" class="form-control" id="material_name" placeholder="Название материала">

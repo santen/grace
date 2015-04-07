@@ -19,7 +19,6 @@
 
 .catalog-body{
 	width: 1090px;
-	height: 200px;
 	margin-top: 10px;
 	margin-left: 10px;
 	border-style: solid;
@@ -236,7 +235,7 @@
 
 .pp-entity-3{
 	width: 350px;
-	height: 460px;
+	height: 480px;
 }
 
 .pp-entity-double{
@@ -248,10 +247,6 @@
 	left: 10px;
 	bottom: 10px;
 	position: absolute;
-}
-
-.entity-list{
-	height: 260px;
 }
 
 #fcolorimg{
