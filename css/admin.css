@@ -110,8 +110,8 @@
 }
 
 .prod-img{
-	width: 88px;
-	height: 80px;
+	max-width: 88px;
+	max-height: 80px;
 	margin-top: 15px;
 	border-style: solid;
 	border-width: 1px;
