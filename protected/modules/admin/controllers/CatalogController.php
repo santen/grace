@@ -6,13 +6,19 @@ Yii::import('system.web');
 
 class CatalogController extends Controller
 {
-	public function actionIndex()
-	{
+	protected $division = 0;
+
+	public function actionIndex($div)
+	{	
+		$this->division = $div;
+
 		$this->layout = 'admin';
 		$this->render('index');
 	}
 
-	public function actionCategory($cat = 0){
+	public function actionCategory($cat = 0, $div){
+		$this->division = $div;
+
 		$categories = Category::model()->findAll();
 
 		$query = Yii::app()->db->createCommand();
@@ -249,6 +255,10 @@ class CatalogController extends Controller
 		$query->reset();
 
 		return $count;
+	}
+
+	public function getDivision(){
+		return $this->division;
 	}
 	// Uncomment the following methods and override them if needed
 	/*

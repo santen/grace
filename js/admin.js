@@ -1,6 +1,20 @@
 var currentStep = 1;
 
 $(document).ready(function() {
+	window.onload = function(){
+		switch($("#div").val()){
+			case 1:
+				$("#male").addClass("active");
+				break;
+			case 2:
+				$("#female").addClass("active");
+				break;
+			case 3:
+				$("#children").addClass("active");
+				break;
+		}
+	}
+
 	$("#newcat").click(function(){
 		$(".pp-category").show();
 		$(".hidden-layout").show();

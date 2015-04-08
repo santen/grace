@@ -23,18 +23,13 @@
 	<div class="hidden-layout"></div>
 	<div class="admin-container">
 		<div class="top-bar">
-			<ul class="nav nav-tabs">
-				<?php
-					echo "<li role='presentation'><a href='".CHtml::normalizeUrl(array('catalog/index'))."'>Для мужчин</a></li>";
-					echo "<li role='presentation' class='active'><a href='".CHtml::normalizeUrl(array('catalog/index'))."'>Для женщин</a></li>";
-					echo "<li role='presentation'><a href='".CHtml::normalizeUrl(array('catalog/index'))."'>Для детей</a></li>";
-					echo "<li role='presentation'><a href='".CHtml::normalizeUrl(array('orders/index'))."'>Заказы</a></li>";
-					echo "<li role='presentation'><a href='".CHtml::normalizeUrl(array('orders/index'))."'>Лист ожидания</a></li>";
-					echo "<li role='presentation'><a href='".CHtml::normalizeUrl(array('user/index'))."'>Пользователи</a></li>";
-					echo "<li role='presentation'><a href='".CHtml::normalizeUrl(array('questions/index'))."'>Q&A</a></li>";
-					echo "<li role='presentation'><a href='".CHtml::normalizeUrl(array('comments/index'))."'>Комментарии</a></li>";
-				?>
-			</ul>
+			<?php
+				$div = 0;
+				if(Yii::app()->controller->getId() == "catalog")
+					$div = Yii::app()->controller->getDivision();
+				
+				$this->widget('application.extensions.widgets.MainMenuWidget', array("div" => $div));
+			?>
 		</div>
 		<div class="toolbar">
 			<div class="row">				

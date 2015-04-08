@@ -118,6 +118,22 @@
 	border-color: #787878;
 }
 
+.prod-img-menu{
+	width: 88px;
+	height: 30px;
+	margin-top: -30px;
+	background: rgba(0, 0, 0, 0.6);
+}
+
+.img-menu-item{
+	width: 88px;
+	height: 15px;
+	text-align: center;
+	color: #FFF;
+	font-size: 12px;
+	cursor: pointer;
+}
+
 .statusbar{
 	margin-bottom: 10px;
 	height: 70px;
@@ -138,7 +154,7 @@
 }
 
 .steps{
-	width: 280px;
+	width: 322px;
 	height: 40px;
 	margin: 0 auto;
 	text-align: center;
@@ -170,11 +186,11 @@
 }
 
 .step-arrow{
-	width: 40px;
+	width: 54px;
 	height: 30px;
 	float: left;
 	margin-top: 5px;
-	background: url('../images/arrow_right.png');
+	background: url('../images/circles.png') no-repeat center;
 }
 
 #step1_form{
