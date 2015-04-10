@@ -1,20 +1,6 @@
 var currentStep = 1;
 
 $(document).ready(function() {
-	window.onload = function(){
-		switch($("#div").val()){
-			case 1:
-				$("#male").addClass("active");
-				break;
-			case 2:
-				$("#female").addClass("active");
-				break;
-			case 3:
-				$("#children").addClass("active");
-				break;
-		}
-	}
-
 	$("#newcat").click(function(){
 		$(".pp-category").show();
 		$(".hidden-layout").show();
@@ -32,7 +18,13 @@ $(document).ready(function() {
 		$(".hidden-layout").click();
 	});
 
-	$("#newprod").click(function(){		
+	$(".btn-xs").click(function(){
+		$.cookie();
+	});
+
+	// ProductWidget
+	$("#newprod").click(function(){
+		getSizes();
 		$("#pp_product").show();
 		$(".hidden-layout").show();
 		$("#step1").click();
@@ -75,6 +67,15 @@ $(document).ready(function() {
 	function resetProductForm(){		
 		$("#add_prod").hide();
 		$("#okbtn").show();
+	}
+
+	function getSizes(){
+		$("#sizelst").find("option").remove();
+		var sizes = $("#sizelst > option").clone();
+
+		$("#prod_sizes").append("<option value='0'>Размеры</option>");
+		for(var i = 0; i < sizes.length; i++)
+			$("#prod_sizes").append(sizes[i]);
 	}
 
 	$("#division").change(function(){
@@ -165,6 +166,8 @@ $(document).ready(function() {
 	$(".form-group").click(function(){
 		$("#addprodbtn").attr("disabled", false);
 	});
+
+	// end ProductWidget
 
 	$("#cnclbrand").click(function(){
 		$(".hidden-layout").click();

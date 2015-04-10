@@ -19,12 +19,12 @@ class CatalogController extends Controller
 	public function actionCategory($cat = 0, $div){
 		$this->division = $div;
 
-		$categories = Category::model()->findAll();
-
+		$categories = Category::model()->findAll("parent_id = 0 and division = :div", array(":div" => $div));
+		
 		$query = Yii::app()->db->createCommand();
 		$query->select("tablename");
 		$query->from("category");
-		$query->where("id=:id", array(":id" => $cat));
+		$query->where("id = :id", array(":id" => $cat));
 		$category = $query->queryRow();
 		$query->reset();
 
@@ -48,7 +48,7 @@ class CatalogController extends Controller
 		$query = Yii::app()->db->createCommand();
 		$query->select("*");
 		$query->from("category");
-		$query->where("division = :division", array(":division" => $div));
+		//$query->where("division = :division", array(":division" => $div));
 		$categories = $query->queryAll();
 		$query->reset();
 
@@ -210,19 +210,99 @@ class CatalogController extends Controller
 	}
 
 	public function actionAddProd(){
-		if((strlen($_POST["model"]) == 0) || ($_POST["category"] == 0) || (strlen($_POST["price"]) == 0))
-			$this->redirect(array('admin/catalog/category'));
+		//if((strlen($_POST["model"]) == 0) || ($_POST["category"] == 0) || (strlen($_POST["price"]) == 0))
+		//	$this->redirect(array('admin/catalog/category'));		
+		$mainImg = $_FILES["fmain_img"]["name"];
+		$extension = $this->getExtension($mainImg);
+
+		if($this->isValidImage($extension)){
+			$prodImgDir = "images/products/";
+			$prodMainImg = time().".".$extension;
+			$prodImgPath = $prodImgDir.$prodMainImg;
+
+			$file = new CUploadedFile($mainImg, $_FILES["fmain_img"]["tmp_name"], "image/".$extension, $_FILES["fmain_img"]["size"], 0);
+			$file->saveAs($prodImgPath);
+		}
 
 		$category = Category::model()->find("id = :id", array(":id" => $_POST["category"]));		
 
-		$sql = "insert into ".$category["tablename"]." (model, category_id, price, cdate) values (:model, :category, :price, now())";
+		$sql = "insert into product (name, category_id, price, artikul, main_img, cdate) values (:model, :category, :price, :artikul, :mainimg, now())";
 		$query = Yii::app()->db->createCommand($sql);
 		$query->bindParam(":model", $_POST["model"]);
-		$query->bindParam(":category", $_POST["category"]);		
+		$query->bindParam(":category", $_POST["category"]);
 		$query->bindParam(":price", $_POST["price"]);
+		$query->bindParam(":artikul", $_POST["artikul"]);
+		$query->bindParam(":mainimg", $prodMainImg);
 		$query->execute();
+		$query->reset();
 
-		$this->redirect(array('catalog/category', "cat" => $_POST["category"]));
+		$productId = Yii::app()->db->getLastInsertID();
+
+		/*$content = json_decode($_POST["prod_content"], true);		
+		$this->addContent($productId, $content);
+
+		$sizes = json_decode($_POST["prod_sizes"], true);
+		$this->addSizes($productId, $sizes);*/
+		
+		$this->addProductImages($productId, $_FILES["prod_images"]);
+
+		$query = Yii::app()->db->createCommand();
+		$query->select("*");
+		$query->from("product");
+		$query->where("id = :id", array(":id" => $productId));
+		$product = $query->queryRow();
+		$query->reset();
+
+		$this->layout = 'admin';
+		$this->render('product', array("product" => $product));
+	}
+
+	private function addContent($productId, $content){
+		for($i = 0; $i < count($content); $i++){
+			$sql = "insert into content (product_id, percent, material_id) values (:product, :percent, :material)";
+			$query = Yii::app()->db->createCommand($sql);
+			$query->bindParam(":product", $productId);
+			$query->bindParam(":percent", $content["percent"]);
+			$query->bindParam(":material", $content["material"]);
+			$query->execute();
+			$query->reset();
+		}
+	}
+
+	private function addSizes($productId, $sizes){
+		for($i = 0; $i < count($sizes); $i++){
+			$sql = "insert into p_size (product_id, size_id, number) values (:product, :size, :number)";
+			$query = Yii::app()->db->createCommand($sql);
+			$query->bindParam(":product", $productId);
+			$query->bindParam(":size", $sizes["size"]);
+			$query->bindParam(":number", $sizes["number"]);
+			$query->execute();
+			$query->reset();
+		}
+	}
+
+	private function addProductImages($productId, $images){
+		$prodImgDir = "images/products/";
+
+		for($i = 0; $i < count($_FILES["prod_images"]); $i++){
+			$prodImg = $_FILES["prod_images"]["name"][$i];
+			$extension = $this->getExtension($prodImg);
+
+			//if($this->isValidImage($extension)){				
+				$prodImg = time().".".$extension;
+				$prodImgPath = $prodImgDir.$prodImg;
+
+				$file = new CUploadedFile($prodImg, $_FILES["prod_images"]["tmp_name"][$i], "image/".$extension, $_FILES["prod_images"]["size"][$i], 0);
+				$file->saveAs($prodImgPath);
+
+				$sql = "insert into p_images (product_id, img) values (:product, :img)";
+				$query = Yii::app()->db->createCommand($sql);
+				$query->bindParam(":product", $productId);
+				$query->bindParam(":img", $prodImg);
+				$query->execute();
+				$query->reset();
+			//}
+		}
 	}
 
 	private function getParent($id){

@@ -6,17 +6,11 @@
 		?>
 	</div>
 </div>
-<div class="leftside-bar">
-	<ul class="nav nav-pills nav-stacked">
-		<?php
-			foreach($categories as $key => $category){
-				if($category["id"] == $cat)
-					echo "<li role='presentation' class='active' id='cat_".$category["id"]."'><a href='".CHtml::normalizeUrl(array('catalog/category', 'cat' => $category["id"]))."'>".$category["name"]."</a></li>";
-				else
-					echo "<li role='presentation' id='cat_".$category["id"]."'><a href='".CHtml::normalizeUrl(array('catalog/category', 'cat' => $category["id"]))."'>".$category["name"]."</a></li>";
-			}			
-		?>
-	</ul>
+<div class="leftside-bar">	
+	<?php		
+		foreach($categories as $key => $category)
+			echo "<div class='category' id='ct".$category["id"]."'>".$category["name"]."</div>";
+	?>
 </div>
 <div class="catalog-body">
 	<table class="table table-hover">
@@ -26,15 +20,16 @@
 					<td>Модель</td>
 					<td>Цена</td>
 					<td>Краткое описание</td>
-					<td>Количество/Размер/Цвет</td>
+					<td>Количество/Размер</td>
+					<td>Действия</td>
 			</tr>
 		</thead>
 		<tbody>
 				<?php
 					$imageUrl = Yii::app()->request->baseUrl."/images/products/";
 					foreach($products as $key => $product){
-						echo "<tr>";
-						echo "<td><img src='".$imageUrl."/".$product["category_id"]."/".$product["main_img"]."' width='100px'></td>";
+						echo "<tr class='product-row'>";
+						echo "<td><img src='".$imageUrl."/".$product["main_img"]."' width='100px'></td>";
 						echo "<td>".$product["name"]."</td>";
 						echo "<td>".$product["price"]."</td>";
 						echo "<td>".$product["description"]."</td>";
@@ -42,7 +37,15 @@
 						foreach($product["count"] as $key => $count){
 							echo $count["samples"]." - ".$count["size"]." - ".$count["color"]."<br />";
 						}
-						echo "</td></tr>";
+						echo "</td>";
+						echo "<td><div class='btn-group' role='group'>";
+						echo "<button type='button' class='btn btn-info btn-xs' id='union".$product["id"]."' title='Добавить в объединение'>
+								<span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
+							  </button>";
+						echo "<button type='button' class='btn btn-info btn-xs' id='prod_hide".$product["id"]."' title='Скрыть'>
+								<span class='glyphicon glyphicon-eye-close' aria-hidden='true'></span>
+							  </button>";
+						echo "</div></td></tr>";
 					}
 				?>
 		</tbody>

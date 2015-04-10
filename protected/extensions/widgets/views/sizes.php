@@ -9,7 +9,7 @@
 			<?php
 				echo "<select class='form-control' id='sizelst' size='11'>";
 				foreach ($sizes as $key => $size)
-					echo "<option value=".$size["id"]."'>".$size["name"]."</option>";
+					echo "<option value='".$size["id"]."'>".$size["name"]."</option>";
 				echo "</select>";
 			?>
 		<div class="form-group">
