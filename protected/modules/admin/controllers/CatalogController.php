@@ -11,7 +11,7 @@ class CatalogController extends Controller
 	public function actionIndex($div){
 		$this->division = $div;
 
-		$this->layout = 'admin';
+		$this->layout = 'catalog';
 		$this->render('index');
 	}
 
@@ -39,7 +39,7 @@ class CatalogController extends Controller
 		for($i = 0; $i < count($products); $i++)
 			$products[$i] = array_merge($products[$i], array("count" => $this->getCountProducts($products[$i]["id"])));
 
-		$this->layout = 'admin';
+		$this->layout = 'catalog';
 		$this->render('index', array("cat" => $cat, "categories" => $categories, "products" => $products));
 	}
 
@@ -176,12 +176,18 @@ class CatalogController extends Controller
 
 		$productId = Yii::app()->db->getLastInsertID();
 
-		$product = json_decode($_POST["newProduct"], true);		
-		$this->addContent($productId, $product["content"]);
-		$this->addSizes($productId, $product["sizes"]);
-		
+		$jsonProduct = json_decode($_POST["newProduct"], true);
+		$this->addContent($productId, $jsonProduct["content"]);
+		$this->addSizes($productId, $jsonProduct["sizes"]);		
 		$this->addProductImages($productId, $_FILES["pImages"]);
 
+		$product = $this->getProduct($productId);
+
+		$this->layout = 'catalog';
+		$this->render('product', array("product" => $product));
+	}
+
+	private function getProduct($productId){
 		$query = Yii::app()->db->createCommand();
 		$query->select("*");
 		$query->from("product");
@@ -189,8 +195,7 @@ class CatalogController extends Controller
 		$product = $query->queryRow();
 		$query->reset();
 
-		$this->layout = 'admin';
-		$this->render('product', array("product" => $product));
+		return $product;
 	}
 
 	private function getMaterial($material){
