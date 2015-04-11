@@ -3,6 +3,7 @@
 		<?php $this->beginWidget('CActiveForm', array('id'=>'prod_form',
 													  'action' => CHtml::normalizeUrl(array('catalog/addprod')),
 													  'htmlOptions'=>array('enctype'=>'multipart/form-data'))); ?>
+			<input type="hidden" id="newProduct" name="newProduct" value="0">
 			<legend>Добавление товара</legend>
 			<div class="steps">
 				<div class="step-active" id="step1">1</div>
@@ -19,7 +20,7 @@
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="">Выберите категорию:</label>
-							<select name="category" id="category" class="form-control" required="required">
+							<select name="pCategory" id="pCategory" class="form-control" required="required">
 								<option value="0"></option>
 								<?php
 									foreach($categories as $key => $category)
@@ -31,19 +32,19 @@
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="">Модель:</label>
-							<input type="text" name="model" id="model" class="form-control" required="required">
+							<input type="text" name="pModel" id="pModel" class="form-control" required="required">
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="">Цена:</label>
-							<input type="text" name="price" id="price" class="form-control" required="required">
+							<input type="text" name="pPrice" id="pPrice" class="form-control" required="required">
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="">Артикул:</label>
-							<input type="text" name="artikul" id="artikul" class="form-control" required="required">
+							<input type="text" name="pArtikul" id="pArtikul" class="form-control" required="required">
 						</div>
 					</div>
 					<div class="col-sm-6">
@@ -62,27 +63,26 @@
 			<div id="step2_form">
 				<div class="form-group">
 					<label for="">Краткое описание:</label>
-					<textarea name="brief" id="brief" class="form-control"></textarea>	
+					<textarea name="pBrief" id="pBrief" class="form-control"></textarea>
 				</div>
 				<div class="form-inline">
 					<div class="form-group">
 						<label for="">Состав:</label>
-						<input type="text" name="matpercent" id="matpercent" class="form-control" placeholder="47%">
-						<select name="prod_material" id="prod_material" class="form-control" required="required">
+						<input type="text" name="pMatPercent" id="pMatPercent" class="form-control" placeholder="47%">
+						<select name="pMaterials" id="pMaterials" class="form-control" required="required">
 							<option value=""></option>
 							<?php
 								foreach($materials as $key => $material)
 									echo "<option value='".$material["id"]."'>".$material["name"]."</option>";
 							?>
 						</select>
-						<input type="hidden" id="prod_content" name="prod_content">
-						<button type="button" class="btn btn-default btn-sm">Добавить</button>
+						<button type="button" class="btn btn-default btn-sm" id="pAddMaterial">Добавить</button>
 					</div>
 				</div>				
 				<div class="row">
 					<div class="col-sm-1"></div>
 					<div class="col-sm-7">
-						<select name="content" id="content" class="form-control" size="5" multiple="">
+						<select name="pContent" id="pContent" class="form-control" size="5" multiple="">
 							<option value=""></option>
 						</select>
 					</div>
@@ -93,20 +93,18 @@
 				<div class="col-sm-6">
 					<div class="form-group">
 						<label for="">Размеры:</label>
-						<input type="text" name="sizecount" id="sizecount" class="form-control" placeholder="Количество">
-						<select name="" class="form-control" id="prod_sizes">
+						<input type="text" name="size_count" id="size_count" class="form-control" placeholder="Количество">
+						<select class="form-control" id="prod_sizes">
 							<option value="0">Размер</option>
 						</select>
-						<button type="button" class="btn btn-default" id="prod_size">Добавить</button>
+						<button type="button" class="btn btn-default" id="pAddSize">Добавить</button>
 					</div>
 				</div>
 				<div class="col-sm-6">
 					<div class="form-group">
 						<label for="">&nbsp;</label>
-						<select name="" id="input" class="form-control" size="7" multiple="">
-							<option value="0">Размеры</option>
+						<select name="p_sizes" id="p_sizes" class="form-control" size="7" multiple="">							
 						</select>
-						<input type="hidden" id="prod_sizes" name="prod_sizes">
 					</div>
 				</div>				
 			</div>

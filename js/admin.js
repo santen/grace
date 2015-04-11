@@ -1,4 +1,15 @@
 var currentStep = 1;
+var newProduct = {
+	model: "",
+	category: 0,
+	price: 0,
+	artikul: "",
+	mainImage: "",
+	brief: "",
+	content: new Array(),
+	sizes: new Array(),
+	otherImages: new Array()
+}
 
 $(document).ready(function() {
 	$("#newcat").click(function(){
@@ -64,12 +75,61 @@ $(document).ready(function() {
 		$("#step1_form").show();
 	});
 
+	$("#pCategory").change(function(){
+		window.newProduct.category = $("#pCategory").val();
+	});
+
+	$("#pModel").change(function(){
+		window.newProduct.model = $("#pModel").val();
+	});
+
+	$("#pArtikul").change(function(){
+		window.newProduct.artikul = $("#pArtikul").val();
+	});
+
+	$("#pPrice").change(function(){
+		window.newProduct.price = $("#pPrice").val();
+	});
+
+	$("#pAddSize").click(function(){
+		var pSize = $("#prod_sizes option:selected").text();
+		var pSizeCount = $("#size_count").val();
+		var sizesCount = $("#p_sizes").size();
+
+		$("#p_sizes").append("<option value='" + sizesCount + "'>" + pSizeCount + " - " + pSize + "</option>");
+		window.newProduct.sizes.push(pSizeCount + "-" + pSize);
+
+		$("#size_count").val("");
+		$("#prod_sizes").prop('selectedIndex',0);
+	});
+
+	$("#pAddMaterial").click(function(){
+		var matPercent = $("#pMatPercent").val();
+		var material = $("#pMaterials option:selected").text();
+		var contentSize = $("#pContent").size();
+
+		window.newProduct.content.push(matPercent + "-" + material);
+		$("#pContent").append("<option value='" + contentSize + "'>" + matPercent + " " + material + "</option>");
+
+		$("#pMatPercent").val("");
+		$("#pMaterials").prop('selectedIndex',0);
+	});
+
 	function resetProductForm(){		
 		$("#add_prod").hide();
 		$("#okbtn").show();
 	}
 
 	function getSizes(){
+		//$("#sizelst").find("option").remove();
+		var sizes = $("#sizelst > option").clone();
+
+		//$("#prod_sizes").append("<option value='0'>Размеры</option>");
+		for(var i = 0; i < sizes.length; i++)
+			$("#prod_sizes").append(sizes[i]);
+	}
+
+	function getCategories(){
 		$("#sizelst").find("option").remove();
 		var sizes = $("#sizelst > option").clone();
 
@@ -102,6 +162,8 @@ $(document).ready(function() {
 		var prodImg = $("#fmain_img")[0].files[0];
 
 		readImage(prodImg, "#main_img");
+
+		window.newProduct.mainImage = $("#fmain_img").val();
 	});
 
 	$("#add_other_img").click(function(){
@@ -113,6 +175,8 @@ $(document).ready(function() {
 
 		for(var i = 0; i < files.length; i++){
 			readImage(files[i], "#prod_img" + i);
+
+			window.newProduct.otherImages.push(files[i]);
 		}
 	});
 
