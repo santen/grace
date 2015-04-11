@@ -41,17 +41,17 @@ $(document).ready(function() {
 		$("#step1").click();
 	});
 
-	$("#okbtn").click(function(){
+	$("#pOkBtn").click(function(){
 		$("#step" + window.currentStep).switchClass("step-active", "step");
-		$('#step' + window.currentStep + "_form").hide();
+		$('#step' + window.currentStep + "Form").hide();
 
 		window.currentStep++;
 		$("#step" + window.currentStep).switchClass("step", "step-active");
-		$('#step' + window.currentStep + "_form").show();
+		$('#step' + window.currentStep + "Form").show();
 
 		if(window.currentStep == 4){
-			$("#add_prod").show();
-			$("#okbtn").hide();
+			$("#pCreateBtn").show();
+			$("#pOkBtn").hide();
 		}
 	});
 
@@ -60,19 +60,19 @@ $(document).ready(function() {
 		$("#" + step).switchClass("step", "step-active");
 		$("#step" + window.currentStep).switchClass("step-active", "step");
 		//скрываем предыдущую часть формы...
-		$("#step" + window.currentStep + "_form").hide();
+		$("#step" + window.currentStep + "Form").hide();
 		window.currentStep = step[4];
 		// и показываем текущую часть
-		$("#step" + window.currentStep + "_form").show();
+		$("#step" + window.currentStep + "Form").show();
 	});
 
 	$("#step1").click(function(){		
 		$("#step" + window.currentStep).switchClass("step-active", "step");
-		$("#step" + window.currentStep + "_form").hide();
+		$("#step" + window.currentStep + "Form").hide();
 
 		$("#step1").switchClass("step", "step-active");
 		window.currentStep = 1;
-		$("#step1_form").show();
+		$("#step1Form").show();
 	});
 
 	$("#pCategory").change(function(){
@@ -91,21 +91,21 @@ $(document).ready(function() {
 		window.newProduct.price = $("#pPrice").val();
 	});
 
-	$("#pAddSize").click(function(){
-		var pSize = $("#prod_sizes option:selected").text();
-		var pSizeCount = $("#size_count").val();
-		var sizesCount = $("#p_sizes").size();
+	$("#pAddSizeBtn").click(function(){
+		var pSize = $("#pSizes").val();
+		var pSizeCount = $("#pSizeCount").val();
+		var sizesCount = $("#pSizesList").size();
 
-		$("#p_sizes").append("<option value='" + sizesCount + "'>" + pSizeCount + " - " + pSize + "</option>");
+		$("#pSizesList").append("<option value='" + sizesCount + "'>" + pSizeCount + " - " + pSize + "</option>");
 		window.newProduct.sizes.push(pSizeCount + "-" + pSize);
 
-		$("#size_count").val("");
-		$("#prod_sizes").prop('selectedIndex',0);
+		$("#pSizeCount").val("");
+		$("#pSizesList").prop('selectedIndex',0);
 	});
 
-	$("#pAddMaterial").click(function(){
+	$("#pAddMatBtn").click(function(){
 		var matPercent = $("#pMatPercent").val();
-		var material = $("#pMaterials option:selected").text();
+		var material = $("#pMaterials").val();
 		var contentSize = $("#pContent").size();
 
 		window.newProduct.content.push(matPercent + "-" + material);
@@ -115,27 +115,16 @@ $(document).ready(function() {
 		$("#pMaterials").prop('selectedIndex',0);
 	});
 
-	function resetProductForm(){		
-		$("#add_prod").hide();
-		$("#okbtn").show();
+	function resetProductForm(){	
+		$("#pCreateBtn").hide();
+		$("#pOkBtn").show();
 	}
 
 	function getSizes(){
-		//$("#sizelst").find("option").remove();
 		var sizes = $("#sizelst > option").clone();
 
-		//$("#prod_sizes").append("<option value='0'>Размеры</option>");
 		for(var i = 0; i < sizes.length; i++)
-			$("#prod_sizes").append(sizes[i]);
-	}
-
-	function getCategories(){
-		$("#sizelst").find("option").remove();
-		var sizes = $("#sizelst > option").clone();
-
-		$("#prod_sizes").append("<option value='0'>Размеры</option>");
-		for(var i = 0; i < sizes.length; i++)
-			$("#prod_sizes").append(sizes[i]);
+			$("#pSizes").append(sizes[i]);
 	}
 
 	$("#division").change(function(){
@@ -154,27 +143,27 @@ $(document).ready(function() {
 		});
 	});
 
-	$("#prod_img").click(function(){
-		$("#fmain_img").click();
+	$("#pMainImgBtn").click(function(){
+		$("#pMainImg").click();
 	});
 
-	$("#fmain_img").change(function(){
-		var prodImg = $("#fmain_img")[0].files[0];
+	$("#pMainImg").change(function(){
+		var prodImg = $("#pMainImg")[0].files[0];
 
-		readImage(prodImg, "#main_img");
+		readImage(prodImg, "#pMainImgView");
 
-		window.newProduct.mainImage = $("#fmain_img").val();
+		window.newProduct.mainImage = $("#pMainImg").val();
 	});
 
-	$("#add_other_img").click(function(){
-		$("#prod_images").click();
+	$("#pAddImgBtn").click(function(){
+		$("#pImages").click();
 	});
 
-	$("#prod_images").change(function(){
-		var files = $("#prod_images")[0].files;
+	$("#pImages").change(function(){
+		var files = $("#pImages")[0].files;
 
 		for(var i = 0; i < files.length; i++){
-			readImage(files[i], "#prod_img" + i);
+			readImage(files[i], "#pImg" + i);
 
 			window.newProduct.otherImages.push(files[i]);
 		}
@@ -190,45 +179,13 @@ $(document).ready(function() {
 		imgReader.readAsDataURL(img);
 	}
 
-	$("#addprodbtn").mouseover(function(){
-		var state = 1;
-		if($("#model").val().length == 0)
-			state *= 0;
-		else
-			state *= 1;
-
-		console.log("state = " + state);
-
-		if($("#price").val().length == 0)
-			state *= 0;
-		else
-			state *= 1;
-
-		console.log("state = " + state);
-
-		if($("#category").val() != 0)
-			state *= 1;
-		else
-			state *= 0;
-
-		console.log("category = " + $("#category").val());
-		console.log("state = " + state);
-
-		if($("#division").val() != 0)
-			state *= 1;
-		else
-			state *= 0;
-
-		console.log("division = " + $("#division").val());
-		console.log("state = " + state);
-
-		if(state == 0)
-			$("#addprodbtn").attr("disabled", true);
-			
+	$("#pCancelBtn").click(function(){
+		$(".hidden-layout").click();
 	});
 
-	$(".form-group").click(function(){
-		$("#addprodbtn").attr("disabled", false);
+	$("#pCreateBtn").mouseover(function(){
+		console.log(JSON.stringify(window.newProduct));
+		$("#newProduct").val(JSON.stringify(window.newProduct));
 	});
 
 	// end ProductWidget

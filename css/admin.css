@@ -97,15 +97,15 @@
 	float: left;
 }
 
-#brief{
+#pBrief{
 	height: 110px;
 }
 
-#content{
+#pContent{
 	width: 195px;
 }
 
-#prodimages{
+#pImages{
 	display: none;
 }
 
@@ -137,20 +137,6 @@
 .statusbar{
 	margin-bottom: 10px;
 	height: 70px;
-}
-
-#current-data{
-	margin-left: 10px;
-	float: left;
-	color: #787878;
-	font-size: 14px;
-}
-
-#current-color{	
-	width: 70px;
-	height: 70px;
-	float: left;
-	background: orange;
 }
 
 .steps{
@@ -193,23 +179,23 @@
 	background: url('../images/circles.png') no-repeat center;
 }
 
-#step1_form{
+#step1Form{
 	display: none;	
 }
 
-#step2_form{
+#step2Form{
 	display: none;
 }
 
-#step3_form{
+#step3Form{
 	display: none;
 }
 
-#step4_form{
+#step4Form{
 	display: none;
 }
 
-#addprodbtn{
+#pCreateBtn{
 	display: none;
 }
 
@@ -270,30 +256,6 @@
 	position: absolute;
 }
 
-#fcolorimg{
+#pMainImg{
 	display: none;
-}
-
-/* ColorWidget */
-.color-preview{
-	width: 80px;
-	height: 80px;
-	border-style: solid;
-	border-width: 1px;
-	border-color: #787878;
-	border-radius: 5px;
-	display: none;
-	position: fixed;
-	z-index: 12;
-}
-
-#color-img{
-	margin: 5px;
-}
-
-#samplecolor{
-	border-style: solid;
-	border-width: 1px;
-	border-color: #787878;
-	background: #FFF;
 }
