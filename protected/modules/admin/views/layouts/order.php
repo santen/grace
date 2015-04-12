@@ -33,7 +33,14 @@
 			?>
 		</div>
 		<div class="toolbar">
-			<div class="row">				
+			<div class="row">
+				<div class="btn-toolbar">
+					<div class="btn-group" id="oTmpUsersBtn">Временные пользователи</div>
+					<div class="btn-group" id="oUsersBtn">Постоянные пользователи</div>
+				</div>
+				<div class="btn-toolbar">
+					<div class="btn-group" id="oHistoryBtn">История заказов</div>
+				</div>
 			</div>
 		</div>
 		<?php echo $content; ?>

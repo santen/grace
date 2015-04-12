@@ -4,16 +4,95 @@ class OrderController extends Controller
 {
 	public function actionIndex()
 	{
+		$currentDate = getdate();
+		$currentDate = $currentDate["year"]."-".$currentDate["month"]."-".$currentDate["mday"];
+
+		$orders = $this->getOrders($currentDate);
+		$statuses = $this->getOrderStatuses();
+
 		$this->layout = 'order';
-		$this->render('order');
-	}
-
-	public function actionOrders(){
-
+		$this->render('index', array("orders" => $orders, "statuses" => $statuses));
 	}
 
 	public function actionGetOrder($id){
-		
+		$query = Yii::app()->db->createCommand();
+
+		$query->select("*");
+		$query->from("order_content");
+		$query->where("order_id = :id", array(":id" => $id));
+		$order = $query->queryAll();
+		$query->reset();
+
+		$products = $this->getProducts($order);
+
+		$this->layout = 'order';
+		$this->render('content', array("order" => $order, "products" => $products));
+	}
+
+	private function getOrders($date){
+		$query = Yii::app()->db->createCommand();
+		$query->select("uorder.id as oid, user.id as uid, 
+						nickname, avatar, 
+						is_visitor, status_id,
+						status, user_comment,
+						sum, method");
+		$query->from("uorder");
+		$query->join("user", "uorder.user_id = user.id");
+		$query->join("order_status ostatus", "uorder.status_id = ostatus.id");
+		$query->where("cdate = :date and status_id < 5", array(":date" => $date));
+		$orders = $query->queryAll();
+		$query->reset();
+
+		return $orders;
+	}
+
+	private function getInterval($period){
+		switch ($period) {
+			case 1:
+				return date_create();
+			case 2:
+				$yesterday = date_create();
+				date_sub($yesterday, new DateInterval("P1D"));
+				return $yesterday;
+			case 3:
+				$beforeYesterday = date_create();
+				date_sub($beforeYesterday, new DateInterval("P2D"));
+				return $beforeYesterday;
+			case 4:
+				$weekAgo = date_create();
+				date_sub($weekAgo, new DateInterval("P7D"))
+				return $weekAgo;
+			default:
+				$weeksAgo = date_create();
+				date_sub($weeksAgo, new DateInterval("P14D"))
+				return $weeksAgo;
+		}
+	}
+
+	private function getProducts($order){
+		$products = array();
+
+		for($i = 0; $i < count($order); $i++){
+			$productId = $order[$i]["product_id"];
+
+			$query->select("*");
+			$query->from("product");
+			$query->where("id = :id", array(":id" => $productId));
+			array_push($products, $query->queryRow());
+			$query->reset();
+		}
+
+		return $products;
+	}
+
+	private function getOrderStatuses(){
+		$query = Yii::app()->db->createCommand();
+		$query->select("*");
+		$query->from("order_status");
+		$statuses = $query->queryAll();
+		$query->reset();
+
+		return $statuses;
 	}
 
 	// Uncomment the following methods and override them if needed
