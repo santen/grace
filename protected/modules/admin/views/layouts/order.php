@@ -15,6 +15,7 @@
 	<script src="<?php echo Yii::app()->request->baseUrl; ?>/lib/jquery-ui-1.11.4.custom/jquery-ui.min.js" language="JavaScript"></script>
 	
 	<link href="<?php echo Yii::app()->request->baseUrl; ?>/css/admin.css?5436" rel="stylesheet" type="text/css" />
+	<link href="<?php echo Yii::app()->request->baseUrl; ?>/css/orders.css?5436" rel="stylesheet" type="text/css" />
 	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/admin.js?3523" language="JavaScript"></script>
 	<title>Lady Grace Система администрирования</title>
 </head>
@@ -34,14 +35,25 @@
 		</div>
 		<div class="toolbar">
 			<div class="row">
-				<div class="btn-toolbar">
-					<div class="btn-group" id="oTmpUsersBtn">Временные пользователи</div>
-					<div class="btn-group" id="oUsersBtn">Постоянные пользователи</div>
+				<div class="col-lg-12">
+					<div class="btn-toolbar">
+						<div class="btn-group">
+							<button type="button" class="btn btn-default btn-sm" id="oTmpUsersBtn" title="Временные пользователи">
+								<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+							</button>
+							<button type="button" class="btn btn-default btn-sm" id="oTmpUsersBtn" id="oUsersBtn" title="Постоянные пользователи">
+								<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							</button>
+						</div>					
+						<div class="btn-toolbar">
+							<div class="btn-group">
+								<button type="button" class="btn btn-default btn-sm" id="oTmpUsersBtn" id="oHistoryBtn">
+									История заказов
+								</button>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="btn-toolbar">
-					<div class="btn-group" id="oHistoryBtn">История заказов</div>
-				</div>
-			</div>
 		</div>
 		<?php echo $content; ?>
 	</div>

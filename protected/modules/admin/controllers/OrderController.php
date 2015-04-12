@@ -35,11 +35,11 @@ class OrderController extends Controller
 						nickname, avatar, 
 						is_visitor, status_id,
 						status, user_comment,
-						sum, method");
+						sum, method_id");
 		$query->from("uorder");
 		$query->join("user", "uorder.user_id = user.id");
 		$query->join("order_status ostatus", "uorder.status_id = ostatus.id");
-		$query->where("cdate = :date and status_id < 5", array(":date" => $date));
+		$query->where("uorder.cdate = :date and status_id < 5", array(":date" => $date));
 		$orders = $query->queryAll();
 		$query->reset();
 
@@ -60,11 +60,11 @@ class OrderController extends Controller
 				return $beforeYesterday;
 			case 4:
 				$weekAgo = date_create();
-				date_sub($weekAgo, new DateInterval("P7D"))
+				date_sub($weekAgo, new DateInterval("P7D"));
 				return $weekAgo;
 			default:
 				$weeksAgo = date_create();
-				date_sub($weeksAgo, new DateInterval("P14D"))
+				date_sub($weeksAgo, new DateInterval("P14D"));
 				return $weeksAgo;
 		}
 	}

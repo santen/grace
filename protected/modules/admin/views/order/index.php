@@ -2,11 +2,9 @@
 	$imgUrl = Yii::app()->request->baseUrl."/images/avatars/";
 ?>
 <div class="leftside-bar">
-	<div class="periods">
-		<?php
-			$this->widget('application.extensions.widgets.PeriodsWidget');
-		?>
-	</div>
+	<?php
+		$this->widget('application.extensions.widgets.PeriodsWidget');
+	?>
 	<div class="orders-body">
 		<table class="table table-hover">
 			<thead>

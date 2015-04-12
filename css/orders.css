@@ -1,0 +1,14 @@
+.periods{
+	width: 100%;
+}
+
+.leftside-bar{
+	width: 200px;
+	float: left;	
+}
+
+.orders-body{
+	width: 1180px;
+	margin-left: 20px;
+	float: right;
+}
