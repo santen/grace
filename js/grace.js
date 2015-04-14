@@ -1,3 +1,22 @@
+var qvProduct = {
+	id: 0,
+	category: 0,
+	artikul: "",
+	model: "",
+	price: "",
+	mainImg: "",
+	descr: "",
+	images: new Array(),
+	colors: new Array(),
+	content: new Array(),
+	sizes: new Array()
+};
+
+var selProduct = {
+	id: 0,
+	count: new Array()	
+};
+
 $(document).ready(function() {
 	var uid = $.cookie("uid");
 	var sid = $.cookie("sid");
@@ -101,5 +120,80 @@ $(document).ready(function() {
 
 	$("#favatar").change(function(){
 
+	});
+
+	$(".quick-view-action").click(function(){
+		var prodId = $(this).attr("id").substr(3);
+
+		$.ajax({
+			type: "GET",
+			url: "index.php?r=catalog/productajax",
+			data: "id=" + prodId,
+			success: function(data){
+				var product = JSON.parse(data);
+				
+				window.qvProduct.id = product.id;
+				window.qvProduct.category = product.cid;
+				window.qvProduct.artikul = product.artikul;
+				window.qvProduct.model = product.model;
+				window.qvProduct.price = product.price;
+				window.qvProduct.mainImg = product.mainImg;
+				window.qvProduct.descr = product.descr;
+
+				var i;
+				window.qvProduct.sizes = [];
+				window.qvProduct.images = [];
+				window.qvProduct.colors = [];
+				window.qvProduct.content = [];
+				for(i = 0; i < product.sizes.length; i++)
+					window.qvProduct.sizes.push(product.sizes[i]);
+				for(i = 0; i < product.images.length; i++)
+					window.qvProduct.images.push(product.images[i]);
+				for(i = 0; i < product.colors.length; i++)
+					window.qvProduct.colors.push(product.colors[i]);
+				for(i = 0; i < product.content.length; i++)
+					window.qvProduct.content.push(product.content[i]);
+				
+				console.log(JSON.stringify(qvProduct));
+
+				showQVProduct();
+
+				$(".pp-quick").show();
+			}
+		});
+	});
+
+	function showQVProduct(){
+		$("#qvModel").html(window.qvProduct.model);
+		$("#qvMainImg").html(window.qvProduct.mainImg);
+		$("#qvPrice").html(window.qvProduct.price + " рублей");
+
+		var i;
+		$("#qvContent").html("");
+		for(i = 0; i < qvProduct.content.length; i++)
+			$("#qvContent").append(window.qvProduct.content[i].percent + "% " + window.qvProduct.content[i].material + " ");
+
+		$("#qvSizes").html("");
+		for(i = 0; i < qvProduct.sizes.length; i++)
+			$("#qvSizes").append("<div class='size-value'>" + window.qvProduct.sizes[i].size + "</div>");
+
+		$(".pp-images").html("");
+		for(i = 0; i < qvProduct.images.length; i++)
+			$(".pp-images").append("<img src='" + window.qvProduct.images[i].img + "' class='pp-image'>");
+
+		$(".pp-colors").html("");
+		for(i = 0; i < qvProduct.colors.length; i++)
+			$(".pp-colors").append("<img src='" + window.qvProduct.colors[i].mainImg + "' class='pp-image'>");
+	}
+
+	$("#toCartBtn").click(function(){
+		$.ajax({
+			type: "GET",
+			url: "index.php?r=catalog/cartajax",
+			data: "id=" + prodId,
+			success: function(data){
+				var order = JSON.parse(data);
+			}
+		});
 	});
 });

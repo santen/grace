@@ -4,11 +4,11 @@
 
 .leftside-bar{
 	width: 200px;
-	float: left;	
+	display: inline-block;
 }
 
 .orders-body{
 	width: 1180px;
 	margin-left: 20px;
-	float: right;
+	display: inline-block;
 }

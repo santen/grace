@@ -54,8 +54,10 @@
 						</div>
 					</div>
 				</div>
+			</div>
 		</div>
-		<?php echo $content; ?>
+			<?php echo $content; ?>
+		
 	</div>
 	<?php
 		//widgets
