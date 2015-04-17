@@ -1,4 +1,3 @@
-
 	<div class="leftside-bar">
 		<div class="avatar-wrap">
 			<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/avatars/no-thumb.png" id="ava">

@@ -16,7 +16,7 @@
 	</div>
 	</div>
 	<div class="pp-properties">
-		<div class="pp-price" id="qvPrice">83 809 руб.</div>
+		<div id="qvPrice">83 809 руб.</div>
 		<div class="pp-property">Материал: 
 			<div id="qvContent"></div>
 		</div>
@@ -24,9 +24,10 @@
 			Размеры:
 		</div>
 		<div class="pp-size" id="qvSizes"></div>
-		<div class="pp-property">Другие цвета:</div>
+		<div class="pp-property" id="qvColors">Другие цвета:</div>
 		<div class="pp-colors"></div>
-		<div class="pp-images"></div>
+		<div class="pp-images" id="qvImages">
+		</div>
 		<div class="pp-actions">
 			<div class="pp-action">
 				<button type="button" id="toCartBtn" class="btn btn-warning btn-sm">
@@ -39,5 +40,5 @@
 				</button>
 			</div>
 		</div>
-	</div>		
+	</div>
 </div>

@@ -6,19 +6,30 @@
 		<div class="col-lg-8"></div>
 		<div class="col-lg-2">
 			<div class="actions">
-				<div class="site-actions">
-					<button type="button" id="reg_btn" class="btn btn-warning btn-sm">
-						Регистрация
-					</button>
-					<button type="button" id="entry_btn" class="btn btn-default btn-sm">
-						Вход
-					</button>
-				</div>
-				<div class="cart-actions">
-					<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-					<a href="#">Корзина</a> 0
-				</div>
-			</div>
+			<?php
+				if($settings["uid"] == 0 || count($settings["sid"]) == 0)
+				{
+			?>
+					
+						<div class="site-actions">
+							<button type="button" id="regBtn" class="btn btn-warning btn-sm">
+								Регистрация
+							</button>
+							<button type="button" id="entryBtn" class="btn btn-default btn-sm">
+								Вход
+							</button>
+						</div>
+			<?php
+				}
+				else
+					echo "<a href='".CHtml::normalizeUrl(array('user/account'))."'>".$settings["uname"]."</a>";
+			?>
+						<div class="cart-actions">
+							<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+							<a href="#">Корзина</a> 0
+						</div>
+					</div>
+			
 		</div>				
 	</div>
 </div>

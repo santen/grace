@@ -8,7 +8,6 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Lady-Grace Интернет-магазин',
-	'layout' => 'main',
 	// preloading 'log' component
 	'preload'=>array('log'),
 

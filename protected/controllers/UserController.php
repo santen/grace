@@ -1,7 +1,9 @@
 <?php
+define("USER_OK", "1");
 
 class UserController extends Controller
 {
+	public $layout = "profile";
 	public function actionIndex($id){
 		if(!isset($_COOKIE["uid"]) || !isset($_COOKIE["sid"])){
 			$this->layout = 'main';
@@ -19,36 +21,64 @@ class UserController extends Controller
 		$this->render("index", array("user" => $user));
 	}
 
-	public function actionAdd(){
+	public function actionAccount(){
+		$uid = $_COOKIE["uid"];
+		$sid = $_COOKIE["sid"];
+
+		/*if(!isset($_COOKIE["uid"]) || !isset($_COOKIE["sid"])){
+			$this->layout = 'main';
+			$this->render("404");
+		}*/
+
+		/*if(!$this->isGoodUser($uid, $sid)){
+			$this->layout = 'main';
+			$this->render("404");
+		}*/
+		
+		$user = User::model()->find("id = :id", array(":id" => $uid));
+		if(md5($uid.$user["mail"]) != $sid)
+
+		
+		$this->layout = "main";
+		$this->render("account", array("user" => $user));
+	}
+
+	public function actionAddAjax(){
 		$currentDate = date("Y-m-d");
+
+		$user = json_decode($_POST["user"], true);
 
 		$sql = "insert into user(mail, passwd, cdate) values(:mail, :passwd, :cdate)";
 		$query = Yii::app()->db->createCommand($sql);
 
-		$query->bindParam(":mail", $_POST["mail"], PDO::PARAM_STR);
-		$query->bindParam(":passwd", md5($_POST["passwd1"]), PDO::PARAM_STR);
-		$query->bindParam(":cdate", $currentDate, PDO::PARAM_STR);
+		$query->bindParam(":mail", $user["mail"]);
+		$query->bindParam(":passwd", md5($user["pass"]));
+		$query->bindParam(":cdate", $currentDate);
 
 		$query->execute();
 
 		$userId = Yii::app()->db->getLastInsertID();
 
-		$this->layout = 'profile';
-		$this->render('index');
+		setcookie("uid", $userId);
+		setcookie("sid", md5($userId.$user["mail"]));
+		$route = "index.php?r=user/account";
+
+		$response = array("uid" => $userId, "route" => $route, "status" => USER_OK);
+		$this->renderPartial('userajax', array("response" => $response));
 	}
 
-	public function actionAuth(){
-		$mail = $_POST["mail"];
-		$passwd = md5($_POST["passwd"]);
+	public function actionAuthAjax(){
+		$user = json_decode($_POST["user"], true);
 
-		$user = User::model->find("mail = :mail and passwd = :passwd", array(":mail" => $mail, ":passwd" => $passwd));
+		$user = User::model()->find("mail = :mail and passwd = :passwd", array(":mail" => $user["mail"], ":passwd" => md5($user["pass"])));
 		if(count($user) != 0){
 			setcookie("uid", $user["id"]);
-			setcookie("sid", md5($user["mail"]));
+			setcookie("sid", md5($user["id"].$user["mail"]));
 		}
 
-		$this->layout = "profile";
-		$this->render("index", array("user" => $user));
+		$route = "index.php?r=user/account";
+		$response = array("uid" => $user["id"], "route" => $route, "status" => USER_OK);
+		$this->renderPartial("userajax", array("response" => $response));
 	}
 
 	public function actionSettings($id){
@@ -74,13 +104,11 @@ class UserController extends Controller
 	}
 
 	private function isGoodUser($uid, $sid){
-		if(!isset($_COOKIE["uid"]) || !isset($_COOKIE["sid"]))
-			return false;
-
-		$user = User::model()->find("id = :id", array(":id" => $uid))
-		if(md5($user["mail"]) != $_COOKIE["sid"]){
+		$user = User::model()->find("id = :id", array(":id" => $uid));
+		if(md5($uid.$user["mail"]) != $sid){
 			return false;
 		}
+		return true;
 	}
 
 	private function clearUser(){

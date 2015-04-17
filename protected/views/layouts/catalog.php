@@ -35,5 +35,6 @@
 		</div>
 	</div>
 	<?php $this->widget('application.extensions.widgets.QuickViewWidget'); ?>
+	<?php $this->widget('application.extensions.widgets.LoginWidget'); ?>
 </body>
 </html>

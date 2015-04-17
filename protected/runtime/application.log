@@ -2693,3 +2693,419 @@ REQUEST_URI=/grace/index.php?r=catalog/productajax&id=20
 in /home/st3rax/web/grace/protected/controllers/CatalogController.php (106)
 in /home/st3rax/web/grace/protected/controllers/CatalogController.php (57)
 in /home/st3rax/web/grace/index.php (13)
+2015/04/16 12:22:36 [error] [php] Undefined index: pass (/home/st3rax/web/grace/protected/controllers/UserController.php:54)
+Stack trace:
+#0 /home/st3rax/web/yii/framework/web/CController.php(286): UserController->runAction()
+#1 /home/st3rax/web/yii/framework/web/CController.php(265): UserController->runActionWithFilters()
+#2 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): UserController->run()
+#3 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /home/st3rax/web/grace/index.php(13): CWebApplication->run()
+REQUEST_URI=/grace/index.php?r=user/addajax
+in /home/st3rax/web/grace/protected/controllers/UserController.php (54)
+in /home/st3rax/web/grace/index.php (13)
+2015/04/16 12:23:13 [error] [php] Undefined index: pass (/home/st3rax/web/grace/protected/controllers/UserController.php:54)
+Stack trace:
+#0 /home/st3rax/web/yii/framework/web/CController.php(286): UserController->runAction()
+#1 /home/st3rax/web/yii/framework/web/CController.php(265): UserController->runActionWithFilters()
+#2 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): UserController->run()
+#3 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /home/st3rax/web/grace/index.php(13): CWebApplication->run()
+REQUEST_URI=/grace/index.php?r=user/addajax
+in /home/st3rax/web/grace/protected/controllers/UserController.php (54)
+in /home/st3rax/web/grace/index.php (13)
+2015/04/16 12:26:23 [error] [php] Undefined index: pass (/home/st3rax/web/grace/protected/controllers/UserController.php:54)
+Stack trace:
+#0 /home/st3rax/web/yii/framework/web/CController.php(286): UserController->runAction()
+#1 /home/st3rax/web/yii/framework/web/CController.php(265): UserController->runActionWithFilters()
+#2 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): UserController->run()
+#3 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /home/st3rax/web/grace/index.php(13): CWebApplication->run()
+REQUEST_URI=/grace/index.php?r=user/addajax
+in /home/st3rax/web/grace/protected/controllers/UserController.php (54)
+in /home/st3rax/web/grace/index.php (13)
+2015/04/16 12:32:52 [error] [exception.CException] exception 'CException' with message 'UserController cannot find the requested view "404".' in /home/st3rax/web/yii/framework/web/CController.php:878
+Stack trace:
+#0 /home/st3rax/web/yii/framework/web/CController.php(782): CController->renderPartial('404', NULL, true)
+#1 /home/st3rax/web/grace/protected/controllers/UserController.php(34): CController->render('404')
+#2 /home/st3rax/web/yii/framework/web/actions/CInlineAction.php(49): UserController->actionAccount()
+#3 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('account')
+#7 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/account')
+#8 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/grace/index.php?r=user/account
+HTTP_REFERER=http://192.168.100.51/grace/index.php?r=catalog/index&cid=5
+---
+2015/04/16 12:33:13 [error] [exception.CException] exception 'CException' with message 'UserController cannot find the requested view "404".' in /home/st3rax/web/yii/framework/web/CController.php:878
+Stack trace:
+#0 /home/st3rax/web/yii/framework/web/CController.php(782): CController->renderPartial('404', NULL, true)
+#1 /home/st3rax/web/grace/protected/controllers/UserController.php(34): CController->render('404')
+#2 /home/st3rax/web/yii/framework/web/actions/CInlineAction.php(49): UserController->actionAccount()
+#3 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('account')
+#7 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/account')
+#8 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/grace/index.php?r=user/account
+---
+2015/04/16 12:34:46 [error] [exception.CException] exception 'CException' with message 'UserController cannot find the requested view "404".' in /home/st3rax/web/yii/framework/web/CController.php:878
+Stack trace:
+#0 /home/st3rax/web/yii/framework/web/CController.php(782): CController->renderPartial('404', NULL, true)
+#1 /home/st3rax/web/grace/protected/controllers/UserController.php(34): CController->render('404')
+#2 /home/st3rax/web/yii/framework/web/actions/CInlineAction.php(49): UserController->actionAccount()
+#3 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('account')
+#7 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/account')
+#8 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/grace/index.php?r=user/account
+---
+2015/04/16 12:35:22 [error] [exception.CException] exception 'CException' with message 'UserController cannot find the requested view "404".' in /home/st3rax/web/yii/framework/web/CController.php:878
+Stack trace:
+#0 /home/st3rax/web/yii/framework/web/CController.php(782): CController->renderPartial('404', NULL, true)
+#1 /home/st3rax/web/grace/protected/controllers/UserController.php(34): CController->render('404')
+#2 /home/st3rax/web/yii/framework/web/actions/CInlineAction.php(49): UserController->actionAccount()
+#3 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('account')
+#7 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/account')
+#8 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/grace/index.php?r=user/account
+---
+2015/04/16 12:36:00 [error] [exception.CException] exception 'CException' with message 'UserController cannot find the requested view "404".' in /home/st3rax/web/yii/framework/web/CController.php:878
+Stack trace:
+#0 /home/st3rax/web/yii/framework/web/CController.php(782): CController->renderPartial('404', NULL, true)
+#1 /home/st3rax/web/grace/protected/controllers/UserController.php(34): CController->render('404')
+#2 /home/st3rax/web/yii/framework/web/actions/CInlineAction.php(49): UserController->actionAccount()
+#3 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('account')
+#7 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/account')
+#8 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/grace/index.php?r=user/account
+---
+2015/04/16 13:18:55 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /home/st3rax/web/yii/framework/web/CController.php:336
+Stack trace:
+#0 /home/st3rax/web/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#2 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('index')
+#4 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('catalog/index')
+#5 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#6 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/grace/?r=catalog/index
+---
+2015/04/16 13:19:14 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /home/st3rax/web/yii/framework/web/CController.php:336
+Stack trace:
+#0 /home/st3rax/web/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#2 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('categories')
+#4 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('catalog/categor...')
+#5 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#6 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/grace/?r=catalog/categories
+---
+2015/04/16 13:19:27 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'field list'. The SQL statement executed was: SELECT `id`, `name`, `price`
+FROM `dress`.
+2015/04/16 13:19:27 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'field list'' in /home/st3rax/web/yii/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /home/st3rax/web/yii/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /home/st3rax/web/grace/protected/controllers/CatalogController.php(34): CDbCommand->queryAll()
+#2 [internal function]: CatalogController->actionCategories('4')
+#3 /home/st3rax/web/yii/framework/web/actions/CAction.php(109): ReflectionMethod->invokeArgs(Object(CatalogController), Array)
+#4 /home/st3rax/web/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(CatalogController), Object(ReflectionMethod), Array)
+#5 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#6 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#7 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('categories')
+#9 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('catalog/categor...')
+#10 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#11 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/grace/?r=catalog/categories&id=4
+---
+2015/04/16 13:19:41 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'field list'. The SQL statement executed was: SELECT `id`, `name`, `price`
+FROM `dress`.
+2015/04/16 13:19:41 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'field list'' in /home/st3rax/web/yii/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /home/st3rax/web/yii/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /home/st3rax/web/grace/protected/controllers/CatalogController.php(34): CDbCommand->queryAll()
+#2 [internal function]: CatalogController->actionCategories('4')
+#3 /home/st3rax/web/yii/framework/web/actions/CAction.php(109): ReflectionMethod->invokeArgs(Object(CatalogController), Array)
+#4 /home/st3rax/web/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(CatalogController), Object(ReflectionMethod), Array)
+#5 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#6 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#7 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('categories')
+#9 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('catalog/categor...')
+#10 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#11 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/grace/index.php?r=catalog/categories&id=4
+---
+2015/04/16 13:20:47 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /home/st3rax/web/yii/framework/web/CController.php:336
+Stack trace:
+#0 /home/st3rax/web/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#2 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('categories')
+#4 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('catalog/categor...')
+#5 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#6 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/grace/index.php?r=catalog/categories&cid=4
+---
+2015/04/16 13:23:41 [error] [php] Undefined index: cart (/home/st3rax/web/grace/protected/controllers/OrderController.php:26)
+Stack trace:
+#0 /home/st3rax/web/yii/framework/web/CController.php(286): OrderController->runAction()
+#1 /home/st3rax/web/yii/framework/web/CController.php(265): OrderController->runActionWithFilters()
+#2 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): OrderController->run()
+#3 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /home/st3rax/web/grace/index.php(13): CWebApplication->run()
+REQUEST_URI=/grace/index.php?r=order/cartajax&cart={%22id%22:0,%22cid%22:0,%22key%22:%22%22,%22sizes%22:[]}
+2015/04/16 13:24:53 [error] [php] Undefined index: cart (/home/st3rax/web/grace/protected/controllers/OrderController.php:26)
+Stack trace:
+#0 /home/st3rax/web/yii/framework/web/CController.php(286): OrderController->runAction()
+#1 /home/st3rax/web/yii/framework/web/CController.php(265): OrderController->runActionWithFilters()
+#2 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): OrderController->run()
+#3 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /home/st3rax/web/grace/index.php(13): CWebApplication->run()
+REQUEST_URI=/grace/index.php?r=order/cartajax&cart={%22id%22:0,%22cid%22:0,%22key%22:%22%22,%22sizes%22:[]}
+2015/04/16 13:25:09 [error] [exception.CException] exception 'CException' with message 'OrderController and its behaviors do not have a method or closure named "partialRender".' in /home/st3rax/web/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /home/st3rax/web/grace/protected/controllers/OrderController.php(32): CComponent->__call('partialRender', Array)
+#1 /home/st3rax/web/grace/protected/controllers/OrderController.php(32): OrderController->partialRender('cartajax', Array)
+#2 /home/st3rax/web/yii/framework/web/actions/CInlineAction.php(49): OrderController->actionCartAjax()
+#3 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('cartajax')
+#7 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('order/cartajax')
+#8 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/grace/index.php?r=order/cartajax
+HTTP_REFERER=http://192.168.100.51/grace/index.php?r=catalog/index&cid=5
+---
+2015/04/16 13:30:04 [error] [exception.CException] exception 'CException' with message 'OrderController and its behaviors do not have a method or closure named "partialRender".' in /home/st3rax/web/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /home/st3rax/web/grace/protected/controllers/OrderController.php(32): CComponent->__call('partialRender', Array)
+#1 /home/st3rax/web/grace/protected/controllers/OrderController.php(32): OrderController->partialRender('cartajax', Array)
+#2 /home/st3rax/web/yii/framework/web/actions/CInlineAction.php(49): OrderController->actionCartAjax()
+#3 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('cartajax')
+#7 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('order/cartajax')
+#8 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/grace/index.php?r=order/cartajax
+HTTP_REFERER=http://192.168.100.51/grace/index.php?r=catalog/index&cid=5
+---
+2015/04/16 13:31:11 [error] [exception.CException] exception 'CException' with message 'OrderController and its behaviors do not have a method or closure named "partialRender".' in /home/st3rax/web/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /home/st3rax/web/grace/protected/controllers/OrderController.php(32): CComponent->__call('partialRender', Array)
+#1 /home/st3rax/web/grace/protected/controllers/OrderController.php(32): OrderController->partialRender('cartajax', Array)
+#2 /home/st3rax/web/yii/framework/web/actions/CInlineAction.php(49): OrderController->actionCartAjax()
+#3 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('cartajax')
+#7 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('order/cartajax')
+#8 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/grace/index.php?r=order/cartajax
+HTTP_REFERER=http://192.168.100.51/grace/index.php?r=catalog/index&cid=5
+---
+2015/04/16 13:35:02 [error] [exception.CException] exception 'CException' with message 'OrderController and its behaviors do not have a method or closure named "partialRender".' in /home/st3rax/web/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /home/st3rax/web/grace/protected/controllers/OrderController.php(32): CComponent->__call('partialRender', Array)
+#1 /home/st3rax/web/grace/protected/controllers/OrderController.php(32): OrderController->partialRender('cartajax', Array)
+#2 /home/st3rax/web/yii/framework/web/actions/CInlineAction.php(49): OrderController->actionCartAjax()
+#3 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('cartajax')
+#7 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('order/cartajax')
+#8 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/grace/index.php?r=order/cartajax
+HTTP_REFERER=http://192.168.100.51/grace/index.php?r=catalog/index&cid=5
+---
+2015/04/16 13:37:02 [error] [exception.CException] exception 'CException' with message 'OrderController and its behaviors do not have a method or closure named "partialRender".' in /home/st3rax/web/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /home/st3rax/web/grace/protected/controllers/OrderController.php(32): CComponent->__call('partialRender', Array)
+#1 /home/st3rax/web/grace/protected/controllers/OrderController.php(32): OrderController->partialRender('cartajax', Array)
+#2 /home/st3rax/web/yii/framework/web/actions/CInlineAction.php(49): OrderController->actionBucketAjax()
+#3 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('bucketajax')
+#7 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('order/bucketaja...')
+#8 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/grace/index.php?r=order/bucketajax
+HTTP_REFERER=http://192.168.100.51/grace/index.php?r=catalog/index&cid=5
+---
+2015/04/16 13:40:16 [error] [exception.CException] exception 'CException' with message 'OrderController and its behaviors do not have a method or closure named "partialRender".' in /home/st3rax/web/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /home/st3rax/web/grace/protected/controllers/OrderController.php(32): CComponent->__call('partialRender', Array)
+#1 /home/st3rax/web/grace/protected/controllers/OrderController.php(32): OrderController->partialRender('cartajax', Array)
+#2 /home/st3rax/web/yii/framework/web/actions/CInlineAction.php(49): OrderController->actionBucketAjax()
+#3 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('bucketajax')
+#7 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('order/bucketaja...')
+#8 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/grace/index.php?r=order/bucketajax
+HTTP_REFERER=http://192.168.100.51/grace/index.php?r=catalog/index&cid=5
+---
+2015/04/16 13:42:01 [error] [exception.CException] exception 'CException' with message 'OrderController and its behaviors do not have a method or closure named "partialRender".' in /home/st3rax/web/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /home/st3rax/web/grace/protected/controllers/OrderController.php(32): CComponent->__call('partialRender', Array)
+#1 /home/st3rax/web/grace/protected/controllers/OrderController.php(32): OrderController->partialRender('cartajax', Array)
+#2 /home/st3rax/web/yii/framework/web/actions/CInlineAction.php(49): OrderController->actionBucketAjax()
+#3 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('bucketajax')
+#7 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('order/bucketaja...')
+#8 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/grace/index.php?r=order/bucketajax
+HTTP_REFERER=http://192.168.100.51/grace/index.php?r=catalog/index&cid=5
+---
+2015/04/16 13:47:48 [error] [exception.CException] exception 'CException' with message 'OrderController and its behaviors do not have a method or closure named "partialRender".' in /home/st3rax/web/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /home/st3rax/web/grace/protected/controllers/OrderController.php(32): CComponent->__call('partialRender', Array)
+#1 /home/st3rax/web/grace/protected/controllers/OrderController.php(32): OrderController->partialRender('cartajax', Array)
+#2 /home/st3rax/web/yii/framework/web/actions/CInlineAction.php(49): OrderController->actionBucketAjax()
+#3 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /home/st3rax/web/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /home/st3rax/web/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): CController->run('bucketajax')
+#7 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('order/bucketaja...')
+#8 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /home/st3rax/web/grace/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/grace/index.php?r=order/bucketajax
+HTTP_REFERER=http://192.168.100.51/grace/index.php?r=catalog/index&cid=5
+---
+2015/04/16 13:49:21 [error] [php] Use of undefined constant i - assumed 'i' (/home/st3rax/web/grace/protected/controllers/OrderController.php:90)
+Stack trace:
+#0 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /home/st3rax/web/yii/framework/web/CController.php(286): OrderController->runAction()
+#2 /home/st3rax/web/yii/framework/web/CController.php(265): OrderController->runActionWithFilters()
+#3 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): OrderController->run()
+#4 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#6 /home/st3rax/web/grace/index.php(13): CWebApplication->run()
+REQUEST_URI=/grace/index.php?r=order/bucketajax
+in /home/st3rax/web/grace/protected/controllers/OrderController.php (90)
+in /home/st3rax/web/grace/protected/controllers/OrderController.php (35)
+in /home/st3rax/web/grace/index.php (13)
+2015/04/16 13:50:23 [error] [php] Use of undefined constant i - assumed 'i' (/home/st3rax/web/grace/protected/controllers/OrderController.php:90)
+Stack trace:
+#0 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /home/st3rax/web/yii/framework/web/CController.php(286): OrderController->runAction()
+#2 /home/st3rax/web/yii/framework/web/CController.php(265): OrderController->runActionWithFilters()
+#3 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): OrderController->run()
+#4 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#6 /home/st3rax/web/grace/index.php(13): CWebApplication->run()
+REQUEST_URI=/grace/index.php?r=order/bucketajax
+in /home/st3rax/web/grace/protected/controllers/OrderController.php (90)
+in /home/st3rax/web/grace/protected/controllers/OrderController.php (35)
+in /home/st3rax/web/grace/index.php (13)
+2015/04/16 13:51:39 [error] [php] Use of undefined constant i - assumed 'i' (/home/st3rax/web/grace/protected/controllers/OrderController.php:90)
+Stack trace:
+#0 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /home/st3rax/web/yii/framework/web/CController.php(286): OrderController->runAction()
+#2 /home/st3rax/web/yii/framework/web/CController.php(265): OrderController->runActionWithFilters()
+#3 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): OrderController->run()
+#4 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#6 /home/st3rax/web/grace/index.php(13): CWebApplication->run()
+REQUEST_URI=/grace/index.php?r=order/bucketajax
+in /home/st3rax/web/grace/protected/controllers/OrderController.php (90)
+in /home/st3rax/web/grace/protected/controllers/OrderController.php (35)
+in /home/st3rax/web/grace/index.php (13)
+2015/04/16 13:53:18 [error] [php] Use of undefined constant i - assumed 'i' (/home/st3rax/web/grace/protected/controllers/OrderController.php:89)
+Stack trace:
+#0 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /home/st3rax/web/yii/framework/web/CController.php(286): OrderController->runAction()
+#2 /home/st3rax/web/yii/framework/web/CController.php(265): OrderController->runActionWithFilters()
+#3 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): OrderController->run()
+#4 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#6 /home/st3rax/web/grace/index.php(13): CWebApplication->run()
+REQUEST_URI=/grace/index.php?r=order/bucketajax
+in /home/st3rax/web/grace/protected/controllers/OrderController.php (89)
+in /home/st3rax/web/grace/protected/controllers/OrderController.php (35)
+in /home/st3rax/web/grace/index.php (13)
+2015/04/16 13:53:45 [error] [php] Undefined index: id (/home/st3rax/web/grace/protected/controllers/OrderController.php:108)
+Stack trace:
+#0 /home/st3rax/web/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /home/st3rax/web/yii/framework/web/CController.php(286): OrderController->runAction()
+#2 /home/st3rax/web/yii/framework/web/CController.php(265): OrderController->runActionWithFilters()
+#3 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): OrderController->run()
+#4 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#6 /home/st3rax/web/grace/index.php(13): CWebApplication->run()
+REQUEST_URI=/grace/index.php?r=order/bucketajax
+in /home/st3rax/web/grace/protected/controllers/OrderController.php (108)
+in /home/st3rax/web/grace/protected/controllers/OrderController.php (40)
+in /home/st3rax/web/grace/index.php (13)
+2015/04/16 13:54:18 [error] [php] Undefined index: pid (/home/st3rax/web/grace/protected/controllers/OrderController.php:55)
+Stack trace:
+#0 /home/st3rax/web/yii/framework/web/CController.php(286): OrderController->runAction()
+#1 /home/st3rax/web/yii/framework/web/CController.php(265): OrderController->runActionWithFilters()
+#2 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): OrderController->run()
+#3 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /home/st3rax/web/grace/index.php(13): CWebApplication->run()
+REQUEST_URI=/grace/index.php?r=order/bucketajax
+in /home/st3rax/web/grace/protected/controllers/OrderController.php (55)
+in /home/st3rax/web/grace/index.php (13)
+2015/04/16 13:56:37 [error] [php] Undefined variable: userId (/home/st3rax/web/grace/protected/controllers/UserController.php:80)
+Stack trace:
+#0 /home/st3rax/web/yii/framework/web/CController.php(286): UserController->runAction()
+#1 /home/st3rax/web/yii/framework/web/CController.php(265): UserController->runActionWithFilters()
+#2 /home/st3rax/web/yii/framework/web/CWebApplication.php(282): UserController->run()
+#3 /home/st3rax/web/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /home/st3rax/web/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /home/st3rax/web/grace/index.php(13): CWebApplication->run()
+REQUEST_URI=/grace/index.php?r=user/authajax
+in /home/st3rax/web/grace/protected/controllers/UserController.php (80)
+in /home/st3rax/web/grace/index.php (13)

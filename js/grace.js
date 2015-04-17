@@ -9,17 +9,25 @@ var qvProduct = {
 	images: new Array(),
 	colors: new Array(),
 	content: new Array(),
-	sizes: new Array()
+	sizes: new Array(),
+	key: ""
 };
 
 var selProduct = {
 	id: 0,
-	count: new Array()	
+	cid: 0,
+	key: "",
+	sizes: new Array()
 };
 
 $(document).ready(function() {
 	var uid = $.cookie("uid");
 	var sid = $.cookie("sid");
+
+	$(".hidden-layout").click(function(){
+		$(".pp-quick").hide();
+		$(".pp-login").hide();
+	});
 
 	$("#price_slider").slider({
 		min: 500,
@@ -72,34 +80,75 @@ $(document).ready(function() {
 		$(".hidden-layout").hide();
 	});
 
-	$("#reg_btn").click(function(){
-		$(".pp-user").show();
-		$("#reg_tab").click();
+	$("#regBtn").click(function(){
+		$(".pp-login").show();
+		$("#regTab").click();
 
 		$(".hidden-layout").show();
 	});
 
-	$("#entry_btn").click(function(){
-		$(".pp-user").show();
-		$("#entry_tab").click();
+	$("#entryBtn").click(function(){
+		$(".pp-login").show();
+		$("#loginTab").click();
 
 		$(".hidden-layout").show();
 	});
 
-	$("#reg_tab").click(function(){
-		$("#reg_form").show();
-		$("#reg_tab").addClass("active");
+	$("#regTab").click(function(){
+		$(".form-registration").show();
+		$("#regTab").addClass("active");
 
-		$("#entry_tab").removeClass();
-		$("#entry_form").hide();
+		$("#loginTab").removeClass();
+		$(".form-login").hide();
 	});
 
-	$("#entry_tab").click(function(){
-		$("#entry_form").show();
-		$("#entry_tab").addClass("active");
+	$("#loginTab").click(function(){
+		$(".form-login").show();
+		$("#loginTab").addClass("active");
 
-		$("#reg_tab").removeClass();
-		$("#reg_form").hide();
+		$("#regTab").removeClass();
+		$(".form-registration").hide();
+	});
+
+	$("#ppRegBtn").click(function(){
+		if($("#rPasswd0").val() == $("#rPasswd1").val()){
+			if($("#rMail").val().length > 0 && $("#rPasswd0").val().length > 0){
+				var user = {
+					mail: $("#rMail").val(),
+					pass: $("#rPasswd0").val()
+				};
+				$.ajax({
+					type: "POST",
+					url: "index.php?r=user/addajax",
+					data: "user=" + JSON.stringify(user),
+					success: function(data){
+						var res = JSON.parse(data);
+
+						if(res.status > 0 && res.uid > 0)
+							window.location.replace(res.route);
+					}
+				});
+			}
+		}
+	});
+
+	$("#ppLoginBtn").click(function(){
+		var user = {
+			mail: $("#lMail").val(),
+			pass: $("#lPasswd").val()
+		};
+
+		$.ajax({
+			type: "POST",
+			url: "index.php?r=user/authajax",
+			data: "user=" + JSON.stringify(user),
+			success: function(data){
+				var res = JSON.parse(data);
+
+				if(res.status == 1 && res.uid > 0)
+					window.location.replace(res.route);
+			}
+		});
 	});
 
 	$(".avatar-wrap").mouseover(function(){
@@ -139,6 +188,7 @@ $(document).ready(function() {
 				window.qvProduct.price = product.price;
 				window.qvProduct.mainImg = product.mainImg;
 				window.qvProduct.descr = product.descr;
+				window.qvProduct.key = product.key;
 
 				var i;
 				window.qvProduct.sizes = [];
@@ -159,14 +209,16 @@ $(document).ready(function() {
 				showQVProduct();
 
 				$(".pp-quick").show();
+				$(".hidden-layout").show();
 			}
 		});
 	});
 
 	function showQVProduct(){
+		window.clearProduct();
 		$("#qvModel").html(window.qvProduct.model);
-		$("#qvMainImg").html(window.qvProduct.mainImg);
-		$("#qvPrice").html(window.qvProduct.price + " рублей");
+		$("#qvMainImg").attr("src", window.qvProduct.mainImg);
+		$("#qvPrice").html(window.qvProduct.price + " руб.");
 
 		var i;
 		$("#qvContent").html("");
@@ -175,25 +227,69 @@ $(document).ready(function() {
 
 		$("#qvSizes").html("");
 		for(i = 0; i < qvProduct.sizes.length; i++)
-			$("#qvSizes").append("<div class='size-value'>" + window.qvProduct.sizes[i].size + "</div>");
+			$("#qvSizes").append("<div onclick='window.addSize(this)' class='size-value' id='pSize" + window.qvProduct.sizes[i].sid +"'>" + window.qvProduct.sizes[i].size + "</div>");
 
+		var img;
 		$(".pp-images").html("");
-		for(i = 0; i < qvProduct.images.length; i++)
-			$(".pp-images").append("<img src='" + window.qvProduct.images[i].img + "' class='pp-image'>");
+		for(i = 0; i < qvProduct.images.length; i++){			
+			img = $("<img>");
+			img.attr("src", window.qvProduct.images[i].img);
+			img.attr("onclick", "window.showImage(this)");
+			img.addClass("pp-image");
+			$("#qvImages").append(img);
+		}
 
+		if(qvProduct.colors.length == 0)
+			$("#qvColors").hide();
 		$(".pp-colors").html("");
 		for(i = 0; i < qvProduct.colors.length; i++)
 			$(".pp-colors").append("<img src='" + window.qvProduct.colors[i].mainImg + "' class='pp-image'>");
 	}
 
 	$("#toCartBtn").click(function(){
+		window.setProduct();
 		$.ajax({
-			type: "GET",
-			url: "index.php?r=catalog/cartajax",
-			data: "id=" + prodId,
+			type: "POST",
+			url: "index.php?r=order/bucketajax",
+			data: "cart=" + JSON.stringify(window.selProduct),
 			success: function(data){
 				var order = JSON.parse(data);
+				console.log(data);
 			}
 		});
 	});
 });
+
+function showImage(obj){
+	$("#qvMainImg").attr("src", $(obj).attr("src"));
+}
+
+function addSize(obj){
+	var sid = $(obj).attr("id").substr(5);
+
+	for(var i = 0; i < window.selProduct.sizes.length; i++){
+		if(window.selProduct.sizes[i] == sid){
+			window.selProduct.sizes[i] = 0;
+			$(obj).switchClass("size-active", "size-value");
+			return;
+		}	
+	}
+
+	window.selProduct.sizes.push(sid);
+	$(obj).switchClass("size-value", "size-active");
+}
+
+function setProduct(){
+	if(window.selProduct.id == 0){
+		window.selProduct.id = qvProduct.id;
+		window.selProduct.cid = qvProduct.category;
+		window.selProduct.key = qvProduct.key;
+	}
+}
+
+function clearProduct(){
+	window.selProduct.id = 0;
+	window.selProduct.cid = 0;
+	window.selProduct.key = "";
+	window.selProduct.sizes = [];
+}

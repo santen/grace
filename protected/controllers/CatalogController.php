@@ -55,7 +55,32 @@ class CatalogController extends Controller
 		$product = array_merge($product, array("content" => $this->getContent($product["id"]),
 											   "sizes" => $this->getSizes($product["id"]),
 											   "colors" => $this->getUnions($product["id"]),
+											   "images" => $this->getImages($product["id"]),
+											   "key" => md5($product["id"].$product["cid"])));
+
+		$product["mainImg"] = $this->imgUrl.$product["mainImg"];
+
+		$this->renderPartial('productajax', array('product' => $product));
+	}
+
+	public function actionCartAjax($id){
+		$query = Yii::app()->db->createCommand();
+
+		$query->select("category_id as cid, name as model, 
+						description as descr, main_img as mainImg, 
+						price, artikul, id");
+		$query->from("product");		
+		$query->where("id = :id", array(":id" => $id));
+
+		$product = $query->queryRow();
+		$query->reset();
+
+		$product = array_merge($product, array("content" => $this->getContent($product["id"]),
+											   "sizes" => $this->getSizes($product["id"]),
+											   "colors" => $this->getUnions($product["id"]),
 											   "images" => $this->getImages($product["id"])));
+
+		$product["mainImg"] = $this->imgUrl.$product["mainImg"];
 
 		$this->renderPartial('productajax', array('product' => $product));
 	}
@@ -63,7 +88,7 @@ class CatalogController extends Controller
 	private function getSizes($productId){
 		$query = Yii::app()->db->createCommand();
 
-		$query->select("size.name as size, p_size.number as count");
+		$query->select("size.name as size, p_size.number as count, size.id as sid");
 		$query->from("p_size");
 		$query->join("size", "size.id = p_size.size_id");
 		$query->where("product_id = :id", array(":id" => $productId));

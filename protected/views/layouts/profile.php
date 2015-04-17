@@ -20,9 +20,10 @@
 	<div class="hidden-layout"></div>
 	<div class="main-wrap">
 		<?php $this->widget('application.extensions.widgets.HeaderWidget');?>
+		
 		<div class="body-wrap">
-		<?php echo $content; ?>
-	</div>
+			<?php echo $content; ?>
+		</div>
 	</div>
 </body>
 </html>
