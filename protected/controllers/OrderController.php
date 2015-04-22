@@ -19,15 +19,18 @@ class OrderController extends Controller
 			$this->redirect(array('user/settings'));
 	}
 
-	public function actionBucketAjax(){
+	public function actionCartAjax(){
+		if(!isset($_COOKIE["uid"]) || !isset($_COOKIE["sid"])){
+			$response = array("status" => UNAUTH_USER);
+			$this->renderPartial("cartajax", array("response" => $response));
+			return;
+		}
 		$uid = $_COOKIE["uid"];
 		$sid = $_COOKIE["sid"];
 
 		$cart = json_decode($_POST["cart"], true);		
 
 		if($this->isValidUser($uid, $sid) == UNAUTH_USER){
-			setcookie("uid");
-			setcookie("sid");
 			$response = array("status" => UNAUTH_USER);
 			$this->renderPartial("cartajax", array("response" => $response));
 			return;
@@ -45,9 +48,11 @@ class OrderController extends Controller
 			return;
 		}
 
-		$orderId = $this->getOrder($uid)["id"];
-		if(count($orderId == 0))
+		$order = $this->getOrder($uid);
+		if($order == null)
 			$orderId = $this->createOrder($uid);
+		else
+			$orderId = $order["id"];
 
 
 		$sql = "insert into o_content (order_id, category_id, product_id, size_id) values(:oid, :cid, :pid, :sid)";
@@ -68,6 +73,7 @@ class OrderController extends Controller
 		else
 			$response = array("status" => STATUS_ERROR);
 
+		$response = array_merge($response, array("goods" => count($cart["sizes"])));
 		$this->renderPartial("cartajax", array("response" => $response));
 	}
 

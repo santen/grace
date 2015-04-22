@@ -36,5 +36,12 @@
 	</div>
 	<?php $this->widget('application.extensions.widgets.QuickViewWidget'); ?>
 	<?php $this->widget('application.extensions.widgets.LoginWidget'); ?>
+	<div class="pp-error">
+		<div class="pp-error-header">error header</div>
+		<div class="pp-error-body">error body</div>
+		<div class="pp-error-actions">
+			<button type="button" class="btn btn-primary" id="erOkBtn">Ok</button>
+		</div>
+	</div>
 </body>
 </html>

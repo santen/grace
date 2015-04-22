@@ -14,7 +14,7 @@ class OrderController extends Controller
 		$this->render('index', array("orders" => $orders, "statuses" => $statuses));
 	}
 
-	public function actionGetOrder($id){
+	public function actionOrder($id){
 		$query = Yii::app()->db->createCommand();
 
 		$query->select("*");
@@ -29,17 +29,24 @@ class OrderController extends Controller
 		$this->render('content', array("order" => $order, "products" => $products));
 	}
 
+	public function actionOrders($p){
+		$orders = $this->getOrders($this->getInterval($p));
+
+		$this->layout = "order";
+		$this->render("orders", array("orders" => $orders, "period" => $p));
+	}
+
 	private function getOrders($date){
 		$query = Yii::app()->db->createCommand();
-		$query->select("uorder.id as oid, user.id as uid, 
-						nickname, avatar, 
-						is_visitor, status_id,
+		$query->select("uorder.id as oid, user.id as uid, uorder.cdate as odate,
+						nickname, avatar, mail,
+						is_visitor, status_id, change_status as ch_status,
 						status, user_comment,
 						sum, method_id");
 		$query->from("uorder");
 		$query->join("user", "uorder.user_id = user.id");
-		$query->join("order_status ostatus", "uorder.status_id = ostatus.id");
-		$query->where("uorder.cdate = :date and status_id < 5", array(":date" => $date));
+		$query->join("o_status ostatus", "uorder.status_id = ostatus.id");
+		$query->where("uorder.cdate >= :date and status_id < 5", array(":date" => $date));
 		$orders = $query->queryAll();
 		$query->reset();
 
@@ -49,23 +56,23 @@ class OrderController extends Controller
 	private function getInterval($period){
 		switch ($period) {
 			case 1:
-				return date_create();
+				return date_format(date_create(), "Y-m-d");
 			case 2:
 				$yesterday = date_create();
 				date_sub($yesterday, new DateInterval("P1D"));
-				return $yesterday;
+				return date_format($yesterday, "Y-m-d");
 			case 3:
 				$beforeYesterday = date_create();
 				date_sub($beforeYesterday, new DateInterval("P2D"));
-				return $beforeYesterday;
+				return date_format($beforeYesterday, "Y-m-d");
 			case 4:
 				$weekAgo = date_create();
 				date_sub($weekAgo, new DateInterval("P7D"));
-				return $weekAgo;
+				return date_format($weekAgo, "Y-m-d");
 			default:
 				$weeksAgo = date_create();
 				date_sub($weeksAgo, new DateInterval("P14D"));
-				return $weeksAgo;
+				return date_format($weeksAgo, "Y-m-d");
 		}
 	}
 

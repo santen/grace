@@ -2,6 +2,7 @@
 
 class PeriodsWidget extends CWidget
 {
+	public $period;
 	public function init()
 	{
 		
@@ -16,13 +17,13 @@ class PeriodsWidget extends CWidget
 		$twoWeeks = date_sub($today, new DateInterval("P14D"));
 
 		$periods = array();
-		$periods = array_merge($periods, array("Сегодня" => date_format($today, "d.m.Y")));
-		$periods = array_merge($periods, array("Вчера" => date_format($yesterday, "d.m.Y")));
-		$periods = array_merge($periods, array("Позавчера" => date_format($beforeYesterday, "d.m.Y")));
-		$periods = array_merge($periods, array("За неделю" => date_format($oneWeek, "d.m.Y")));
-		$periods = array_merge($periods, array("За 2 недели" => date_format($twoWeeks, "d.m.Y")));
+		array_push($periods, "Сегодня");
+		array_push($periods, "Вчера");
+		array_push($periods, "Позавчера");
+		array_push($periods, "За неделю");
+		array_push($periods, "За 2 недели");
 
-		$this->render('periods', array('periods' => $periods));
+		$this->render('periods', array('periods' => $periods, "current" => $this->period));
 		// этот метод будет вызван внутри CBaseController::endWidget()
 	}
 }

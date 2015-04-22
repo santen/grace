@@ -4,42 +4,32 @@ define("USER_OK", "1");
 class UserController extends Controller
 {
 	public $layout = "profile";
-	public function actionIndex($id){
-		if(!isset($_COOKIE["uid"]) || !isset($_COOKIE["sid"])){
-			$this->layout = 'main';
-			$this->render("404");
-		}
-
-		if(!isGoodUser($_COOKIE["uid"], $_COOKIE["sid"])){
-			$this->layout = 'main';
-			$this->render("404");
-		}
-
-		$user = User::model()->find("id = :id", array(":id" => $id));		
+	public function actionIndex($uid){
+		$user = User::model()->find("id = :id", array(":id" => $uid));
 		
-		$this->layout = 'profile';
-		$this->render("index", array("user" => $user));
+		if($user != null)
+			$this->render("index", array("user" => $user));
+		else
+			$this->render("404");
 	}
 
 	public function actionAccount(){
+		if(!isset($_COOKIE["uid"]) || !isset($_COOKIE["sid"])){
+			$this->render("404");
+			return;
+		}
+
 		$uid = $_COOKIE["uid"];
 		$sid = $_COOKIE["sid"];
-
-		/*if(!isset($_COOKIE["uid"]) || !isset($_COOKIE["sid"])){
-			$this->layout = 'main';
-			$this->render("404");
-		}*/
-
-		/*if(!$this->isGoodUser($uid, $sid)){
-			$this->layout = 'main';
-			$this->render("404");
-		}*/
 		
 		$user = User::model()->find("id = :id", array(":id" => $uid));
-		if(md5($uid.$user["mail"]) != $sid)
-
 		
-		$this->layout = "main";
+		if(md5($uid.$user["mail"]) != $sid){
+			clearUser();
+			$this->render("404");
+			return;
+		}
+		
 		$this->render("account", array("user" => $user));
 	}
 
@@ -105,9 +95,9 @@ class UserController extends Controller
 
 	private function isGoodUser($uid, $sid){
 		$user = User::model()->find("id = :id", array(":id" => $uid));
-		if(md5($uid.$user["mail"]) != $sid){
+		if(md5($uid.$user["mail"]) != $sid)
 			return false;
-		}
+
 		return true;
 	}
 

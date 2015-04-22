@@ -20,6 +20,11 @@ var selProduct = {
 	sizes: new Array()
 };
 
+var cart = {
+	count: 0,
+	sum: 0
+};
+
 $(document).ready(function() {
 	var uid = $.cookie("uid");
 	var sid = $.cookie("sid");
@@ -250,13 +255,29 @@ $(document).ready(function() {
 		window.setProduct();
 		$.ajax({
 			type: "POST",
-			url: "index.php?r=order/bucketajax",
+			url: "index.php?r=order/cartajax",
 			data: "cart=" + JSON.stringify(window.selProduct),
 			success: function(data){
 				var order = JSON.parse(data);
-				console.log(data);
+				switch(parseInt(order.status)){
+					case 1:
+						window.cart.count += order.goods;
+						$("#cartCount").html(window.cart.count);
+						window.cart.sum = order.price;
+						break;
+					case -2:
+						window.showError("Ошибка авторизации", "Для оформления заказа необходимо войти");
+						break;
+					case -3:
+						window.showError("Ошибка", "Вы не указали размер");
+						break;
+				}
 			}
 		});
+	});
+
+	$("#erOkBtn").click(function(){
+		$(".pp-error").hide();
 	});
 });
 
@@ -292,4 +313,10 @@ function clearProduct(){
 	window.selProduct.cid = 0;
 	window.selProduct.key = "";
 	window.selProduct.sizes = [];
+}
+
+function showError(title, text){
+	$(".pp-error").show();
+	$(".pp-error-header").html(title);
+	$(".pp-error-body").html(text);
 }

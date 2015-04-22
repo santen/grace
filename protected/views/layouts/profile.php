@@ -25,5 +25,6 @@
 			<?php echo $content; ?>
 		</div>
 	</div>
+	
 </body>
 </html>

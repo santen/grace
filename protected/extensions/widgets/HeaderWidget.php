@@ -8,7 +8,13 @@ class HeaderWidget extends CWidget
     }
  
     public function run()
-    {
+    {	
+    	if(!isset($_COOKIE["uid"]) || !isset($_COOKIE["sid"])){
+    		$settings = array("uid" => "", "sid" => "", "uname" => "");
+    		$this->render('header', array("settings" => $settings));
+    		return;
+    	}
+
     	$user = User::model()->find("id = :id", array(":id" => $_COOKIE["uid"]));
 
     	if($user["nickname"] != null)

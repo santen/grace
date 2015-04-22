@@ -57,7 +57,6 @@
 			</div>
 		</div>
 			<?php echo $content; ?>
-		
 	</div>
 	<?php
 		//widgets
