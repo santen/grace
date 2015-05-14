@@ -95,7 +95,7 @@ class OrderController extends Controller
 	private function getOrderStatuses(){
 		$query = Yii::app()->db->createCommand();
 		$query->select("*");
-		$query->from("order_status");
+		$query->from("o_status");
 		$statuses = $query->queryAll();
 		$query->reset();
 
